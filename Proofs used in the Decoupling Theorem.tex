@@ -1,0 +1,74 @@
+\input{./SeminarsHeader.tex}
+\input{./SeminarsCommands.tex}
+\begin{document}
+\title{Proofs Needed to Derive the Decoupling Inequality}
+\author{Sofia Qvarfort}
+\maketitle
+\tableofcontents
+
+
+\section{Proof of the Swap Trick}
+Consider four systems, $A, A'$ and $B, B'$. Alice holds two systems whereas Bob holds his two. The Swap operator swaps the states of $B$ and $B'$. That is, we change the labelling of the states. 
+
+Question: What is the physical interpretation of the Swap Trick? Are we physically changing the states? If $A$ is entangled with $B$, is $A$ then entangled with $B'$ once we have swapped the systems? 
+
+The Swap operator $S_{BB'}$ is defined as
+\beq
+S_{BB'} \ket{\psi}_B \otimes \ket{\phi}_{B'} = \ket{\phi}_B \otimes \ket{\psi}_{B'}
+\eeq
+Explicitly, we have that
+\beq
+S_{BB'} = \sum_{ij} \ket{i}\bra{j}_B \otimes \ket{j}\bra{i}_{B'}
+\eeq
+
+The lemma we wish to prove is the following. 
+
+\textbf{Lemma: (Swap Trick)} For a quantum state $\rho_B$, we find that
+\beq
+\trace{\rho_B ^2 } = \trace{(\identity_{AA'} \\otimes S_{BB'} ) (\rho_{AB} \otimes \rho_{A'B'} ) }
+\eeq
+where $S_{BB'}$ denotes the swap operations. 
+
+Proof: Throughout this proof, we will make use of Einstein index notation. Every repeated index is implicitly summed over. We begin by writing down a general, bipartite quantum state, 
+\beq
+\ket{\psi}_{AB} = c_{ij} \ket{i}_A \ket{j}_B
+\eeq
+Similarly, let
+\beq
+\ket{\psi}_{A'B'} =  d_{ab} \ket{a}_{A'} \ket{b}_{B'}
+\eeq
+Thus, we can write down two general density matrices:
+\begin{align}
+\rho_{AB} &= c^\dagger_{ij} c_{kl} \ket{kl}\bra{ij} \\
+\rho_{A'B'} &= d^\dagger_{ab} d_{cd} \ket{cd}\bra{ab}
+\end{align}
+Finally, we also require a state on $B$, 
+\beq
+\rho_B = \sum_{ij} a_i^*a_j \ket{i}\bra{j}
+\eeq
+
+
+Then, we start by writing down the LHS of the statement we wish to prove. We find that 
+\begin{align}
+\trace{\rho_{B}'} &= \trace{ \sum_{ikl} a^*_i a_k a^*_k a_l \ket{i}\bra{l} } \nonumber \\
+&= \sum_{ijkl} \bra{j} a_i^* a_k a_k^* p_j \ket{i}\braket{l|j} \nonumber \\
+&= \sum_{ijkl} a_i^* a_k a_k^* a_j \delta_{ij} \delta_{lj} \nonumber \\
+&= \sum_{ik} |a_i|^2 |a_k|^2
+\end{align}
+
+Then, let us apply the Swap operator to the other states. 
+\begin{align}
+\trace{( \identity_{AA'} \otimes S_{BB'} )(\rho_{AB} \otimes \rho_{A'B'} )} \nonumber \\
+&= \trace{(\identity_{AA'} \otimes S_{BB} ) \left( \sum_{ijkl,abcd} c_{ij}^\dagger c_{kl} d^\dagger_{ab} d_{cd} \ket{klcd}\bra{ijab} \right)  \nonumber } \\
+&= \trace{\sum_{ijkl,abcd} c_{ij}^\dagger c_{kl} d^\dagger_{ab} d_{cd} \ket{kjcd}\bra{ilab} } \nonumber  \\
+&= \sum_{ijkl,abcd,xywz} \bra{xywz} \left( c_{ij}^\dagger c_{kl} d^\dagger_{ab} d_{cd} \ket{kjcd}\bra{ilab}  \right) \ket{xywz} \nonumber \\
+&= \sum_{ijkl,abcd,xywz} \delta_{xk} \delta_{yj} \delta_{wc} \delta_{zd} c_{ij}^\dagger c_{kl} d_{ab} d_{cd} \delta_{ix} \delta_{ly} \delta_{aw} \delta_{bz} \nonumber \\
+&= \sum_{ijab} |c_{ij}|^2 |d_{ab}|^2 
+\end{align}
+We therefore see that the two expressions are the same. This holds because we can map each index in the two-index sum to two of the indices in the sum above. 
+
+ 
+\section{Proof of the Transpose Trick}
+\section{Proof of Uhlman's Theorem}
+
+\end{document}
