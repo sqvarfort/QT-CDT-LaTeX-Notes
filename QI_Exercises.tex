@@ -1,0 +1,109 @@
+\input{../../../UCLHEader.tex}
+\input{../../../UCLCOmmands.tex}
+\begin{document}
+\title{Advanced Quantum Information - All Exercises}
+\author{Sofia Qvarfort}
+\maketitle
+\tableofcontents
+
+\section{Effect of transposition on eigenvalues}
+\textbf{Exercise}: Do the eigenvalues of a matrix $A$ change under transposition $A \rightarrow A^T$?
+
+\section{Ensemble Ambiguity}
+\textbf{Exercise}: Write the ensemble 
+\beq
+\rho = \frac{1}{2} \left( \ket{0}\bra{0} + \ket{1}\bra{1} \right) = \frac{\identity}{2}
+\eeq
+in terms of the $\ket{+}, \ket{-}$-basis. 
+
+\section{Physicality of Linear Maps}
+\textbf{Exercise}: Why does it follow that all linear maps are physical? 
+
+\section{The ultimate winner of the CHSH game}
+\textbf{Exercise}: Show that we can win the CHSH game 100\% of the time using PR-boxes. 
+
+\section{Proof of T'sirleon's bound}
+\textbf{Exercise}: Go through and understand each line of the proof of T'sirleon's bound in Watrous' notes. 
+
+\section{Extensivity of entanglement monotone}
+\textbf{Exercise}: Show that the entropy of a subsystem $S(\rho_A)$ is extensive. 
+
+\section{Optimality of entanglement distillation and concentration}
+\textbf{Exercise}:  Calculate the rate of $E_D$ and $E_C$ and show that they are optimal. 
+
+\section{Probability of error for the bit-flip channel}
+\textbf{Exercise}: Given that the Hamming distance for this channel is $H = 	np$, where $p$ is the probability of a bit-flip, calculate the probability of error for this channel. Solve this by looking at the Hamming weight, and ultimately show that the capcity obeys
+\beq
+C \leq I(X^n;Y^n) \leq nI (X;Y)
+\eeq
+
+
+
+\section{Uniqueness of Stinespring dilation}
+\textbf{Exercise}: Show that Stinespring dilation is unique up to a unitary transformation on the reference state. 
+
+\textbf{Answer}:
+
+\section{The power of the Referee}
+\textbf{Exercise}: Can the referee $R$ who holds the purifying system $\rho_R$ change the systems of Alice and Bob? 
+
+\textbf{Answer}: I would suspect that this has to do with quantum steering, but might only be possible with the addition of classical communication. 
+
+
+\section{The Data Processing Inequality}
+\textbf{Exercise}: Given a classical-quantum state, 
+\beq
+\sum_x p_x \ket{x}\bra{x} \otimes \rho_B
+\eeq
+show that if we wish to send $XB \rightarrow XY$, it follows that 
+\beq
+I(X;B) \geq I(;Y)
+\eeq
+where $IX;Y)$ is a measure of how well we did. 
+
+\section{Holevo Bound}
+\textbf{Exercise}: Show that $I(X;B)$ is the Holevo bound $\chi$. 
+
+\section{The completeness relation for Kraus operators}
+\textbf{Exercise}: Come up with a channel that satisfies
+\beq
+\sum_k A_k A_k^\dagger = \identity
+\eeq
+but not
+\beq
+\sum_k A_k^\dagger A_k = \identity
+\eeq
+
+\section{The pretty good measurement}
+\textbf{Exercise}: Outline the framework of a pretty good measurement. 
+
+\section{Character of an entanglement monoton}
+\textbf{Exercise}: Show that an entanglement monoton satisfies
+\beq
+E_D \leq E \leq E_C
+\eeq
+where $E_D$ denotes entanglement distillation and $E_C$ denotes entanglement concentration. 
+
+\section{Resources used for state merging}
+\textbf{Exercise}: 
+Given a state merging protocol, where Alice wants to send her share of the state to Bob, how many ebits does Alice and Bob need to share in order to be able to send the state? 
+
+
+\section{State merging using a GHZ state}
+\textbf{exercise}: Given that Alice, Bob and the Referee share the pure state
+\beq
+\ket{\psi}_{GHZ} = \frac{1}{\sqrt{2}} \left( \ket{000} + \ket{111} \right)
+\eeq
+what happens if Alice measures her state and gets outcome $\ket{-}$? 
+
+\section{Sending the state}
+\textbf{Exercise}: Given the state merging protocol, show that Alice has sent the state. 
+
+\textbf{Answer}: We will have to check the fidelity of the sent state with respect to the original state. 
+
+\section{Super-dense coding}
+\textbf{Exercise}: Show that we can send two classical bits using one ebit. 
+
+
+
+\end{document}
