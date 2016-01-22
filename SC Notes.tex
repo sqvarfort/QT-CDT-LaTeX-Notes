@@ -1,5 +1,5 @@
-\input{../../UCLHeader.tex}
-\input{../../UCLCommands.tex}
+\input{./UCLHeader.tex}
+\input{./UCLCommands.tex}
 \begin{document}
 \title{Superconductivity Long Notes}
 \author{Sofia Qvarfort}
@@ -385,6 +385,12 @@ which means that the ball can escape. With no damping, the ball keeps rolling do
 Q = \omega_P RC
 \eeq
 
+\item[McCumber parameter] another way to measure the quality of a Josephson junction. Written
+\beq
+\beta_C = Q^2
+\eeq
+
+
 \item[Hystereic junctions] are junctions with 
 \beq
 Q>3
@@ -563,4 +569,173 @@ The procedure is as follows:
 
 \end{description}
 
+\section{Ed Roman's Lecture - SQUIDS}
+\subsection{Introduction}
+\begin{description}
+\item[SQUIDS] are ultrasensitive magnetic flux sensors. They can be thought of as flux-to-voltage transducers. 
+
+\item[Applications] include measuring:
+
+\begin{itemize}
+\item very small magnetic signals
+\item measure/amplify small currents or voltages
+\item measure any quantity that can be related to magnetic flux
+\end{itemize}
+
+\item[Flux quantisation] occurs for a superconducting ring. Only an integer $n$ number of flux quanta $\phi_0$ are allowed into the ring .This follows from the fact that the phase $\theta$ of the wavefunction must be \emph{unique}. It therefore changes by $2\pi$ (goes to its original value) after one turn around the ring. Can show
+\beq
+\Delta \theta = \frac{2 e}{\hbar} \int_S \vv{B} \cdot \intd \vv{S} = \frac{2e}{\hbar} \phi
+\eeq
+where $\phi$ is the total magnetic flux. 
+
+\item[Flux quantum] defined by 
+\beq
+\phi_0 = \frac{h}{2e}
+\eeq
+
+\item[Commercial Josephson junctions ] are fabricated using conventional photolithography in a cleanroom with the structure defined by etching. We want junctions to have
+\beq
+\beta_C < 1
+\eeq
+to avoid hysteresis. This is done by first fabricating them with $\beta_c >1 $ and then adding a metal resistor in parallel with the junction. This gives non-hyesteretic behaviour. 
+
+\end{description}
+\subsection{DC SQUIDS}
+\begin{description}
+
+\begin{figure}[h]
+  \caption{DC SQUID.}
+  \centering
+    \includegraphics[width=0.5\textwidth]{./SC_figures/DC_SQUID.PNG}
+\end{figure}
+
+\item[DC SQUID] consists of two Josephson junctions that are connected by a superconducting loop. We interface with the SQUID by inputting a current into the loop or applying a magnetic field perpendicular to the loop crosssection. 
+
+\item[Josephson junction analogue] One can think of a Josephson junction as a non-linear inductance which accumulates magnetic field energy when a current passes through it. However, the accumulated energy is not expressed in the magnetic field. It is rather thought of as the Josephson energy. 
+
+
+\item[Measurement of DC SQUID] is done by applying an external current $I_b$ into the SQUID (see figure). This is also called the \emph{measurement current}. We measure the voltage over the entire SQUID by comparing the output voltage $V_{out}$ to ground. 
+
+\item[Measured critical current] is $2I_c$, where $I_c$ is the critical current of one single junction. Since we have two junction, and the electrons have two paths to choose from, we can achieve double the critical current before superconductivity breaks down. 
+
+\item[Circulating supercurrent] will be given by 
+\beq
+J = \frac{\phi_{ext}}{L}
+\eeq
+where $L$ is the inductance of the Josephson junction. 
+
+\item[Current in the junctions] is given by 
+\beq
+I_{net} = \frac{I_b}{2} \pm J
+\eeq
+depending on which way the magnetic flux comes in. 
+
+\item[$I_c$ flux dependence] is as follows:  as we increase $\phi$, $I_c$ decreases until we hit $\frac{1}{2} \phi_0$. Then it becomes more energetically favourable to change the direction of the supercurrent, after which $I_c$ starts to increase again. 
+
+Note: I recall Ed saying that this was a fairly handwavy argument... 
+
+The reason for the $\frac{1}{2} \phi_0$ increase is because we gain $\frac{1}{2} \phi_0$ from the supercurrent and $\frac{1}{2} \phi_0$ from the measurement current. At all times, the flux in the loop remains quantised. 
+
+\item[Maximum flux sensitivity] is achieved by maximising the largest possible modulation of the SQUID current. Requirements:
+\begin{itemize}
+\item Loop inductance $L$ \emph{as small as possible}
+\item $J$ as large as possible
+\item Screening parameter condition
+\beq
+\beta_L  = 2 \frac{LI_c}{\phi_0} \leq 1
+\eeq
+\end{itemize}
+
+
+\item[Screening parameter] written $\beta_L$ is related to the hysteresis of the SQUID. 
+
+Question: I don't yet know in which way. 
+
+\item[Geometric loop inductance] $L$ generally scales with the circumference of the loop. Thus we often strive to increase the effective area of the SQUID. 
+
+
+\item[Measuring magnetic flux] can be done by fixing the current, usually just above $2I_c$ and measuring the change in voltage $V$. The voltage will oscillate as a function of $\phi$. Note the hyesteretic behaviour in the graph below. 
+
+\begin{figure}[h]
+  \caption{Constant current dependence.}
+  \centering
+    \includegraphics[width=\textwidth]{./SC_figures/Constant_Current_Measurement.PNG}
+\end{figure}
+
+The Voltage amplitude $\Delta V$ depends on how we set the external measurement current $I_B$. We want to hit the largest $\Delta V$ so that the oscillations are large. Then we obtain very fine readings for the magnetic flux. 
+
+\item[Relative flux sensor] Because of the periodicity, the squid cannot sense absolute magnetic field, just changes in magnetic field strength. 
+
+\item[Voltage modulation depth] $\Delta V$ is roughly given by 
+\beq
+\Delta V \sim \frac{I_c R_N}{1 + \beta_L}
+\eeq
+where $R_N$ is the junction normal resistance. For the ideal $\Delta V$, we require, 
+\beq
+\beta_L \leq 1
+\eeq
+
+\item[Switching voltage] is given by 
+\beq
+V_{switch} = I_c R_N
+\eeq
+Its maximum value is $\frac{1}{\Delta}$ where $\Delta$ is the energy gap of the superconductor. 
+
+\item[Small signal mode] is an operational mode of the SQUID where we measure $\phi \ll \phi_0$. It is also known as the \emph{voltage state}. The procedure is as follows:
+\begin{itemize}
+\item Tune $I_b$ to maximise $\Delta V$
+\item Add a fixed $B$ field to sit at a steep part of the curve, e.g. $\frac{\phi_0}{4}$
+\item Measure the transfer function $\delta V = V_\phi \delta \phi$ where
+\beq
+V_\phi = \frac{d V}{d\phi} \bigg|{max} \sim \frac{R_N}{L}
+\eeq
+\item Obtain change  $\delta \phi$ in external flux
+\end{itemize}
+
+
+
+Question: What exactly is the switching voltage? 
+
+
+
+\item[Noise in voltage state] sets the sensitivity of the SQUID. At most frequencies, the limitation is thermal (Johnson) noise. At lower frequencies, the sensitivity is limited by $1/f$ noise. All frequencies suffer white noise. 
+
+\item[Johnson-Nyquist noise] is the electric noise generated by the thermal movement of electrons inside a conductor. The derivation of this noise is called the fluctuation-dissipation theorem. 
+
+The total amount of thermal noise measured across a resistor depends on the measurement bandwidth $\Delta f$ of the instrument. 
+
+\item[$1/f$ noise] also called pink noise where the frequency spectrum has a power spectral density that is inversely proportional to the frequency of the signal. 
+
+\item[White noise] is a random signal with a constant power spectral density. 
+
+\item[Power spectral density] is the mean square voltage per unit bandwidth. That is
+\beq
+\frac{V^2}{Hz}
+\eeq
+
+\item[Theoretical minimum power spectral density] for a SQUID has through simulations been found to be
+\beq
+S_V(f) \sim 16 k_B T R_N
+\eeq
+at the small signal operating point. 
+
+\item[Flux noise] the power spectral density of the equivalent flux noise is given by 
+\beq
+S_\phi(f) \frac{\sim S_V(f)}{V^2 _\phi} \simeq \frac{16 k_B TL^2}{R_N}
+\eeq
+
+\item[Maximising sensitivity of the SQUID] is done by minimising $S_\phi(f)$. This is done by 
+\begin{itemize}
+\item Low $L$
+\item Low $T$
+\item High $R_N$
+\end{itemize}
+Note that the increase in $R_N$ will be compensated by the increase in $V^2_\phi$. 
+
+
+
+
+
+
+\end{description}
 \end{document}
