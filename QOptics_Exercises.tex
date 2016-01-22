@@ -1,0 +1,41 @@
+\input{SeminarsHeader.tex}
+\input{SeminarsCommands.tex}
+\begin{document}
+\title{Quantum Optics Exercises}
+\maketitle
+
+\newpage
+\section{Sougato Bose}
+\subsection{Moving to a Rotating System (Classical Light)}
+Show that the formula for the Rotating System Hamiltonian $H_{rot}$,
+\begin{align*}
+\Hhat_{rot} &= \me^{\mi H_{0} t}\Hhat\me^{-\mi H_{0} t} - \Hhat_{0} \\
+ &= \frac{\hbar\Omega_{R}}{2} (\splus\me^{\mi\omega_{0}t} + \sminus\me^{-\mi\omega_{0}t})(\me^{\mi(\omega_{L}t-\phi)}+\me^{-\mi(\omega_{L}t-\phi)})
+\end{align*}
+for
+\begin{align*}
+  \Hhat &= \Hhat_{0} + \Hhat_{int} \\
+  \Hhat_{0} &= \frac{\hbar\omega_{0}}{2}\Zhat \\
+  \Hhat_{int} &= \frac{\hbar\Omega_{R}}{2}(\splus + \sminus)(\me^{\mi(\omega_{L}t-\phi)}+\me^{-\mi(\omega_{L}t - \phi)})
+\end{align*}
+\subsection{Derive the Jaynes-Cummings Hamiltonian}
+\subsubsection*{a)}
+Derive
+\beq
+  \Hhat^{rot} = \hbar\delta a^{\dag}a + \frac{\hbar\Omega_{R}}{2}(\splus\me^{\frac{\mi\omega_{0}t}{\hbar}} + \sminus\me^{-\frac{\mi\omega_{0}t}{\hbar}})(a\me^{-\frac{\mi\omega_{0}t}{\hbar}}+a^{\dag}\me^{\frac{\mi\omega_{0}t}{\hbar}})
+\eeq
+from the Hamiltonian
+\begin{align*}
+  \Hhat &= \Hhat_{0} + \Hhat_{int} \\
+  H_{0} &= \frac{\hbar\omega_{0}}{2}\Zhat + \hbar\omega_{0}a^{\dag}a  \\
+  H_{int} &= \frac{\hbar\Omega_{R}}{2}(\splus + \sminus)(a+a^{\dag}) \\
+\end{align*}
+\subsubsection*{b)}
+Using the Dyson expansion of the evolution operator:
+\beq
+  U(t) = \identity - \frac{\mi}{\hbar} \int\limits_{0}^{t} \Hhat^{rot}(t')\mathrm{dt}' - \frac{1}{\hbar} \int\limits_{0}^{t} \int\limits_{0}^{t'} \mathrm{dt}'' \mathrm{dt} \,  \Hhat^{rot}(t')\Hhat^{rot}(t'')
+\eeq
+derive $\Hhat_{JCM}$ from the rotating Hamiltonian.
+
+
+\end{document}
