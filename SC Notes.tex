@@ -4,8 +4,124 @@
 \title{Superconductivity Long Notes}
 \author{Sofia Qvarfort}
 \maketitle
+\tableofcontents
 
 \section{Superconductivity}
+\subsection{Introduction}
+\begin{description}
+\item[Requirements for macroscopic quantum phenomena] are
+\begin{itemize}
+\item Sufficiently low temperatures
+\item Particles must `notice' that they are indistinguishable 
+\item Non-localisation 
+\end{itemize}
+
+\item[Regime for BEC behaviour] holds when the Compton wavelength is similar to the interparticle distance. 
+\beq
+\lambda \geq n^{-1/3}
+\eeq
+In thermal equilibrium, we find
+\beq
+p \sim \left( mk_B T\right)^{1/2}
+\eeq
+and thus we require
+\beq
+k_B T \leq \frac{n^{2/3}  \hbar^2}{m}
+\eeq
+where $m$ is the particle mass. 
+Especially for heavy atoms, this means that the temperatures have to be sufficiently low. 
+
+\item[Candidate systems] include
+\begin{itemize}
+\item some atoms or molecules
+\item Liquid  He-3 or He-4
+\item Dilute atomic alkali gases
+\item Electrons in metals
+\item Quasiparticles, such as excitons, polarisons and magnons
+\item Photons interacting via coupling to some matter component
+\end{itemize}
+
+
+\end{description}
+
+\subsection{Bosons: BEC Basics}
+\begin{description}
+\item[Simple definition] A BEC is a system that is in one single macroscopic state. For a wavefunction
+\beq
+\psi_s(r_1, r2, \ldots r_N)
+\eeq
+which is symmetric exchange, we get the density matrix
+\beq
+\rho(r, r') = N \sum_s p_s \int \intd r_2 \intd r_3 \ldots \int r_N \Psi^*_s(r, r_2, \ldots , r_N) \Psi_s(r', r_2 , \ldots , r_N)
+\eeq
+This is just the inner product of $\braket{\psi^\dagger(r) \psi(r')}$. where I guess that $\psi(r)$ is a single-particle wavefunction. If we diagonalise, we get
+\beq
+\rho(r, r') = \sum_j n_j \chi^*_j (r) \chi_j(r')
+\eeq
+Once one of the eigenvalues dominate, we say that we are in a macroscopic state. 
+
+
+\item[Infinite and translationally invariant systems] gives a single-particle wavefunction 
+\beq
+\chi_j(r) = e^{i \vv{k}_j \cdot \vv{r}/\sqrt{V}}
+\eeq
+
+\item[Macroscopic eigenvalue] $N_0$ for the $\chi_j(r)$ wavefunction given by 
+\beq
+\lim_{|r- r'|\rightarrow \infty} \rho(r, r') = \frac{N_0}{V}
+\eeq
+Question: If we are dealing with an infinite system, should not $V \rightarrow \infty$?
+
+\end{description}
+\subsection{Non-interacting Bose gas}
+\begin{description}
+\item[Statistics] for bosons is given by 
+\beq
+n_k = 	\frac{1}{e^{\beta( \epsilon_k - \mu)} - 1}
+\eeq
+where
+\beq
+\epsilon_k = \frac{\hbar^2 k^2}{2m}
+\eeq
+is the energy of a free particle, and where $\mu$ is the chemical potential. 
+
+\item[Chemical potential] often written $\mu$ is the amount of energy required to add another paticle to the system. 
+
+\item[Total number of particles] given by integrating over all energies, 
+\beq
+N = \int \intd \epsilon \frac{g(\epsilon)}{e^{\beta(\epsilon_k - \mu)} - 1}
+\eeq
+where
+\beq
+g(\epsilon) \propto \epsilon^{d/2 - 1}
+\eeq
+is the density of states. 
+
+Question: I can't recall how the dimensionality of space comes into this. 
+
+Answer: We are concerned with the \emph{density of states}, which necessarily is related to the dimensionality as we ask the question how many states we can fit in per unit volume. 
+
+\item[Requirement for well-defined $n_k$] is 
+\beq
+\mu \leq 0
+\eeq
+
+\item[Maximum number of particles]  the largest possible value of $\mu$ is $\mu = 0$, thus
+\beq
+N_{max} = \int \intd \epsilon \frac{\sqrt{\epsilon }}{e^{\beta \epsilon _k } - 1}
+\eeq
+If we add more particles, we cannot describe the statistics by the Bose-Einstein distribution anymore. 
+
+\item[Macroscopic occupancy] instead, while we are below $T_c$, any new addition will occupy a single state
+\beq
+N = N_0+ N_{max}
+\eeq
+
+Question: I thought we were talking about states and not number. However, could this be that below the temperature, we just treat the new particles as one single particle? 
+
+
+
+\end{description}
 \subsection{Weakly interacting dilute Bose gas}
 \begin{description}
 \item[Full Hamiltonian] is given by 
@@ -19,8 +135,172 @@ In the context of superconductivity, the variational principle can be used to fi
 
 \item[Free energy] is given by
 \beq
-F = N \int  \intd^3 r \left[ \frac{\hbar^2 }{2m } |\nabla_\chi|^2 + \left( V(r) - \mu \right) |\chi|^2 + \frac{UN(N-1)}{2} |\chi|^4 \right]
+F = N \int  \intd^3 r \left[ \frac{\hbar^2 }{2m } |\nabla \chi|^2 + \left( V(r) - \mu \right) |\chi|^2 + \frac{UN(N-1)}{2} |\chi|^4 \right]
 \eeq
+
+\item[Derivation of the Gross-Pitaevskii equation] We wish to derive the equation of motion for the system with the potential above by minimising the free energy. First, we rescale the wavefunction 
+\beq
+\chi = \sqrt{N} \psi(r)
+\eeq
+We obtain
+\beq
+F = \int \intd^3 r \left[ \frac{\hbar^2}{2m} |\nabla^2\psi^2| + \left( V(r) - \mu \right) + \frac{U(N-1)}{2} |\psi|^4 \right]
+\eeq
+This quantity is at its minimum where the derivative of the quantity inside the integral is zero. Differentiating with respect to $\psi$ gives
+\beq
+\frac{\hbar^2}{2m} \nabla^2 \psi + \left( V(r) - \mu\right) |\psi|^2  + U(N+1) |\psi|^3 = 0
+\eeq
+This is a bit like a non-linear Schrodinger equation. 
+
+\item[Chemical potential for translationary invariant systems] A translationary invariant system has, 
+\beq
+\psi = \sqrt{\frac{N}{V}}
+\eeq
+then solving the Gross-Pitaevskii is given by 
+\beq
+\mu = \frac{UN}{V}
+\eeq
+
+
+\item[Time dependent Gross-Pitaevskii equation] we can combine the above with the TDSE to get
+\beq
+i \hbar \frac{d \psi(r,t)}{dt} = \left[- \frac{\hbar^2 \nabla^2}{2m} + V(r) + U|\psi(r, t)|^2 \right] \psi(r,t)
+\eeq
+
+\item[BEC ground state] is characterised by its average number of particles. It can be either a state with well-defined particle number or well-defined phase. 
+\beq
+\ket{\Psi_N} = \left( \psi^\dagger_0\right)^N \ket{\Omega}
+\eeq
+\beq
+\ket{\Psi_\lambda} = e^{\lambda \psi^\dagger_0 - |\lambda|^2/2 } \ket{\Omega}
+\eeq
+The first one is a Fock state and the second is a coherent state. The coherent state has lower energy, and thus the ground state does not have well-defined particle number. 
+
+\end{description}
+\subsection{Fragmented BEC}
+\begin{description}
+\item[Fragmented BEC] for two closely separated states $\chi_0$ and $\chi_1$ can be described by 
+\beq
+\ket{\Psi} = \left( \psi^\dagger_0 \right)^{N-M} \left( \psi^\dagger_1 \right)^M \ket{\Omega}
+\eeq
+
+\item[Interaction energy difference] given by 
+\beq
+\frac{U}{2V} \left( ( N-M)(N-M-1) + M(M-1) + 4(N-M)M \right) \simeq \frac{U}{2V} \left[ N^2 + 2M(N-M) \right] \nonumber
+\eeq
+We have made the approximation of removing one $N$ from the expression above. 
+
+
+\end{description}
+
+\subsection{Fluctuations}
+\begin{description}
+\item[Guassian state] is given by
+\beq
+\psi(r) = \frac{1}{\sqrt{V}} \sum_k \psi_k e^{i \vv{k} \cdot \vv{r}} 
+\eeq
+
+\item[BEC Hamiltonian] the Hamiltonian for the weakly interacting gas is, in 2nd quantisation, 
+\beq
+H - \mu N = \sum_k ( \epsilon_k - \mu )  \psi_k^\dagger \psi_k + \sum_{k , k', q} \frac{U}{2V} \psi^\dagger_{k + q} \psi^\dagger_{k'- q} \psi_{k'} \psi_k
+\eeq
+
+
+\item[Quasi-particle Hamiltonian] the previous Hamiltonian can be diagonalised into 
+\beq
+H = \sum_k \xi_k b_k^\dagger b_k + \frac{\xi_k - \epsilon_k - \mu}{2}
+\eeq
+
+\item[Boboliubov transformation] is a unitary transformation of a commutator relation, such as $[a, a^\dagger] = 1$. Note that in addition to the hyperbolic transformation matrix, we can also add a phase $e^{i \theta}$ to the transformation, since this will be cancelled out. 
+
+\item[More stuff needed here]
+
+
+
+\end{description}
+
+\subsection{Fermions - BCS-BEC Crossover}
+\begin{description}
+\item[BCS theor] describes bonding between fermions and can explain most superconductors. BCS works well when
+\begin{itemize}
+\item Transitions temperatures must be a small fraction of the Fermi degeneracy temperature $T_F$
+\item Normal state is of a normal metal 
+\item Superconductor transition does not occur close to an additional phase transition 
+\item The symmetry of the Cooper pairs is the same as the crystal lattice or $s$-wave in the case of amorphous materials
+\item The principal mechanism of Cooper pairing is the exchange of virtual phonons
+\end{itemize}
+
+\item[Fermi Temperature] written $T_F$ is defined as
+\beq
+T_F = \frac{E_F}{k_B}
+\eeq
+where $E_F$  is the Fermi energy.  $T_F$ is the temperature at which thermal effects are comparable with quantum efects associated with Fermi statistics. 
+
+\item[Virtual phonons] are needed to describe static lattice deformations surrounding a perturbation. They are a field/theoretical tool  required for the transfer of forces and such. 
+
+\item[Cooper problem] phonon cause a weak attraction between the electrons. 
+
+\item[Cooper pairs] are pairs of electrons with momentum with $\ket{k}$ and $-\ket{k}$. Only a few electrons close to the Fermi energy get paired. A Cooper pair is of bosonic nature since it is made up of an even number of fermions. 
+
+Each electron has spin-1/2, which when added can have either spin 1 or spin 0. 
+
+\item[Pairing instability] is based on seeing the superconducting transition as an instabilityof the normal state at some finite temperature. It highlights the potential importance of pairing fluctuations that occur in the normal state even before the critical transition. 
+
+\item[BCS instability] not entirely sure what this is. I think it is adding an instability to the BEC treatment that we performed before. 
+
+\end{description}
+\subsection{Fermion ground-state wavefunction}
+\begin{description}
+\item[Initial assumptions] we assume that a number of $N$ electrons in an alkali metal will have $N/2$ be in the spin-up state and $N/2$ be in the spin-down state. The electrons are moving in  a free 3D space subject to attractive interactions. 
+
+\item[BCS postulate] the ground state is a condensate of a macroscopic number of fermion pairs. Any two different species of particles form a singlet. 
+
+\item[BCS ground state] is given by 
+\beq
+\Psi_N = \mathcal{A} \left\{\varphi|(\vv{r}_1 - \vv{r}_2|  ) \chi_{12} \ldots \phi(|\vv{r}_{N-1} - \vv{r}_N |)\chi_{N-1, N}\right\}
+\eeq
+$\mathcal{A}$ is an operator that anti-symmetrises for any exchange of coordinates or spins for any of the electrons. 
+
+\item[BCS ground state] in second quantisation is also written 
+\beq
+\ket{\Psi}_N = \int \prod_i \intd ^3 r_i \varphi(\vv{r}_1 - \vv{r}_2)\Psi^\dagger_{\uparrow} (\vv{r}_1) \Psi^\dagger_{\downarrow} (\vv{r}_2)\ldots \varphi(\vv{r}_{N-1} - \vv{r}_N) \Psi^\dagger_{\uparrow} ( \vv{r}_{N-1}) \Psi^\dagger_{\downarrow} (\vv{r}_N) \ket{0}
+\eeq
+
+Or, more succinctly, 
+\beq
+\ket{\Psi}_N = (b^\dagger)^{N/2} \ket{0}
+\eeq
+
+
+\item[Field operator] lol... is given by 
+\beq
+\Psi^\dagger_\sigma ( \vv{r}) = \sum_k c^\dagger_{k \sigma} \frac{e^{- i \vv{k}\cdot \vv{r}}}{\sqrt{V}}
+\eeq
+
+\item[Creation operator for Fermion pair]  given by 
+\beq
+b^\dagger = \sum_k \varphi_k v_{k \uparrow} ^\dagger c^\dagger_{- k \downarrow}
+\eeq
+
+
+\end{description}
+\subsection{Superfluidity}
+\begin{description}
+\item[Superfluid wavefunction] is macroscopic and complex, and is given by 
+\beq
+\psi( \vv{r}) = |\psi(\vv{r})| e^{i \phi(\vv{r})}
+\eeq
+
+\item[Current operator] given by 
+\beq
+\vv{J}(r) = \frac{\hbar}{2m*i} \left[ \psi^\dagger( r) \vv{\nabla} \psi(r) - \psi(r) \nabla \psi^\dagger(r) \right]
+\eeq
+
+\item[Superfluid velocity] is the gradient of the phase, 
+\beq
+\vv{v} = \frac{\vv{J}}{density} = \frac{\hbar}{m*} \vv{\nabla} \phi
+\eeq
+
 
 \end{description}
 \section{Classical Josephson Junctions}
@@ -55,7 +335,7 @@ Here, $M$ is the magnetisation of the material, which is the magnetic dipole mom
 
 \item[Wavefunction] for electrons in a superconductor can be written down with a single pair wavefunction
 \beq
-\tilde{\psi}(+vv{r}) = |\psi(\vv{r})|e^{i \theta (\vv{r})}
+\tilde{\psi}(\vv{r}) = |\psi(\vv{r})|e^{i \theta (\vv{r})}
 \eeq
 
 \item[Origin of zero resistance] is the fact that macroscopic electron pairs behave coherently. If an electron pair scatters off a phonon, the other Cooper pairs will move to compensate the phase difference. 
@@ -729,13 +1009,282 @@ S_\phi(f) \frac{\sim S_V(f)}{V^2 _\phi} \simeq \frac{16 k_B TL^2}{R_N}
 \item Low $L$
 \item Low $T$
 \item High $R_N$
+\item Making sure other electronics are not interfering
 \end{itemize}
 Note that the increase in $R_N$ will be compensated by the increase in $V^2_\phi$. 
 
 
+\item[Flux locked loop] shifts the signal frequency to around a high frequency carrier. Instead of trying to measure the absolute frequency,  we modulate it by a carrier. This method is useful when we wish to measure small modulations, e.g. a small signal in the background of the Earth's magnetic field. 
 
+\item[Measuring small fields] We increase sensitivity to \emph{flux measurements} by increasing the loop area $A$. However, changes in magnetic field are given by 
+\beq
+\delta B = \frac{\delta \phi}{A}
+\eeq
+Thus large $A$ will decrease the sensitivity. 
+
+\item[Increasing catchment area] by coupling the SQUID to a much larger pick-up loop. This is known as a SQUID magnetometer. This way, we keep the area of the loop small while still collecting a lot of magnetic field. For this to work, the entire coupled loop must be superconducting. 
+
+\item[Inductively coupled magnetometer] is a SQUID inductively coupled to a pickup loop via a multiturn input coil. This matches the inductance of the input coil and the SQUID. 
+
+
+\item[SQUID Gradiometer] used to remove any background interference from large fields. Uses two rings where the difference in field lines will be due to their more rapid divergence, which means their source lies closer. 
+
+\begin{figure}[h]
+  \caption{SQUID Gradiometer.}
+  \centering
+    \includegraphics[width=\textwidth]{./SC_figures/SQUID_Gradiometer.PNG}
+\end{figure}
+
+
+\item[RF SQUID] an RF SQUID is less sensitive compared to a DC SQUID but is cheaper and easier to manufacture in smaller quantities. The consist of a single Josephson junction in a loop measured indirectly by an RF antennae. 
+
+
+\begin{figure}[h]
+  \caption{RF SQUID.}
+  \centering
+    \includegraphics[width=\textwidth]{./SC_figures/RF_SQUID.PNG}
+\end{figure}
+
+\item[SQUID loop behaviour] We have both flux quantisation in the loop and phase change $\delta $ around the junction. They are thus related by 
+\beq
+\delta  + 2 \pi \frac{\phi_T}{\phi_0} = 2 n \pi
+\eeq
+where $\phi_T$ is the total flux in the loop. 
+
+The total flux $\phi_T$ is made up of the applied flux $\phi_a$ and the flux induced by the screening current, 
+\beq
+J = I _0 \sin{\delta}
+\eeq
+This leads to a relation
+\beq
+\phi_T = \phi_a - LI_0 \sin{\left( 2\pi \frac{\phi_T}{\phi_0} \right)}
+\eeq
+which can be either single valued or hysteretic. 
+
+Question: How is this derived? Where does the inductance $L$ come into the picture? 
+
+Attempt at answer: Probably because we have the relation
+\beq
+L = \frac{\phi}{I}
+\eeq
+That is, the inductance is a measure of how much flux links a circuit when a current flows. 
+
+\item[RF SQUID parameter] determines whether an RF SQUID is hysteretic or not. It is written
+\beq
+\beta_{rf} =  \frac{2\pi LI_0}{\phi_0}
+\eeq
+
+
+\item[RF SQUID readout] is done as follows:
+\begin{itemize}
+\item Couple the loop with the Josephson junction to an LCR oscillator circuit 
+\item Drive LCR circuit close to its resonance by n RF current
+\item Measure the voltage oscillation of LCR circuit 
+\end{itemize}
+
+Question: I am unsure about the last step - it is not clear from the notes. 
+
+\item[Dissipative regime] in this mode, the SQUID makes transitions between quantum states. It dissipates energy at a rate that is periodic in $\phi_a$. This modulates the $Q$ values of the LCR circuit. As a result, the RF voltage output $V_{out}$ is periodic in $\phi_A$. 
+
+
+
+\item[Dispersive regime] (not to be confused with the above!) in this non-hysteretic regime the RF SQUID behaves as a flux sensitive inductor. The inductance is linked to an emf, through
+\beq
+E = - \frac{d \phi}{dt} = - L \frac{d\phi}{dt}
+\eeq
+Question: Something is wrong here. I have never seen Faraday's law with $L$ in it. 
+
+Given the Josephson equations, 
+\beq
+I = I_c \sin{\phi}
+\eeq
+\beq
+\frac{d\phi}{dt} = \frac{2e}{\hbar} V
+\eeq
+We can relate the Josephson current to an inductance
+\beq
+L_J = \frac{\phi_0}{2 \pi I_c \cos{\phi}}
+\eeq
+
+And we obtain
+\beq
+L = \frac{\phi_0}{2 \pi I_c \cos{\phi}}
+\eeq
+Note that this makes the inductance non-linear. 
+
+Question: Derivation? 
+
+\item[Dissipative mode readout] the RF SQUID is read out by detecting the change in the Josephson junction. This is done by observing the change in $Q$ due to the flux change. 
 
 
 
 \end{description}
+
+\section{John Fenton's Lectures - Three parts}
+\subsection{Quantised Josephson junctions}
+This is the quantum part about the junctions. 
+
+\begin{description}
+\item[Potentials] We can think of the bumps in the washboard model as 1D potentials. Treat the electron as a harmonic oscillator and find energy levels (for a single mode)
+\beq
+E_n = \hbar \omega_0 \left(  n + \frac{1}{2} \right)
+\eeq
+
+\item[Potentials in Josephson junction] Potential is not harmonic but \emph{anharmonic} - energy levels are not spaced evenly. It can be estimated by 
+\beq
+U(\phi) = - \frac{h}{2e} I \phi - E_J \cos{\phi}
+\eeq
+Note a static part (which depends on the external current $I$) and an oscillating part. 
+
+\item[Analogues for the washboard] are
+\begin{itemize}
+\item Tilt of washboard = external current bias $I$
+\item Bump amplitude = Josephson energy $E_J$
+\item Bump periodicity = phase difference $\phi = \phi_1 - \phi_2$
+\end{itemize}
+
+\item[Lifetime of electron in potential] is limited due to the electron quantum tunnelling out of the potential. 
+
+\item[Voltage state] means when the electron escapes the potential, and `starts rolling' without stopping in an undamped system. 
+
+\item[Consequence of tunnelling] means that even as we go to 0 K, we see occasional current and voltage spikes once an electron manages to tunnel out. 
+
+\item[Irradiation of microwaves] increases the tunnel rate. 
+
+Question: Exactly which mechanism induces this? There are only graphs in the notes... :(
+
+\item[Josephson junction Hamiltonian ] for zero current bias given by 
+\beq
+H = U(\phi) + 4 E_c N^2 = U(\phi) - 4 E_c \frac{\p ^2}{\p \phi ^2}
+\eeq
+where
+\beq
+N = - i \frac{\p}{\p \phi}
+\eeq
+and
+\beq
+E_c = \frac{e^2}{2C}
+\eeq
+Question: Is this the conductance of the junction, or the combination addition of all capacitances in the circuit? 
+
+Attempt at answer: I think it is only the junction. In the notes, the capacitance is used as an analogy of the `ball's mass'. 
+
+Note that $\phi$ and $N$ are \emph{conjugate variables} - they are not simultaneously observable. 
+
+Question: Why do we have a $N^2$ term here? I haven't really seen those around before. 
+
+
+
+
+\item[$E_J \gg 	E_c$ regime] will see the wavefunction $\psi(\phi)$ sharply peaked around specified $\phi$. It implies
+\begin{itemize}
+\item Small $\delta \phi$ = $\phi$ well defined
+\item Large $\Delta N$ = $N$ not well defined
+\end{itemize}
+
+
+Question: Which wavefunction are we considering? The total wavefunction of both superconductors, or just one of them? 
+
+\item[$E_J \ll E_c$ regime] wavefunction $\psi(\phi)$ varies slowly over  some range. 
+\begin{itemize}
+\item Large $\Delta \phi$ = $\phi$ not well defined
+\item Large $\Delta N$ = $N$ well defined
+\end{itemize}
+I believe that these assertions come from when we would average over many turns of the wavefunction. 
+
+\item[Deriving the Josephson Equations from the Schrodinger equation] can be done by realising that tunnelling changes the number of Cooper pairs on one junction electrode, $N \rightarrow N + 1$. This warrants the Hamiltonian
+\beq
+H_J = - \frac{E_J}{2} \sum_{- \infty}^\infty \left( \ket{N} \bra{N+1} + \ket{N+1} \bra{N} \right)
+\eeq
+From this we can solve the Schrodinger equation as well as prove the complementarity of $N$ and $\phi$
+
+\end{description}
+
+\subsection{Qubits form Josephson junctions}
+\begin{description}
+\item[Motivation] advantages and disadvantages are:
+\begin{itemize}
+\item Good for scaling
+\item Easy to couple 
+\item Couples too easily to environment
+\item Short coherence times
+\end{itemize}
+
+\item[Josephson junction qubits] come in three varieties:
+\begin{itemize}
+\item Charge qubits
+\item Flux qubits
+\item Phase qubits
+\end{itemize}
+
+
+\item[Qubit requirements] are tunable separation between energy levels. 
+
+
+\item[Phase qubits] is a current-biased Josephson junction, operated in the zero voltage state with a non-zero current bias. 
+
+The \emph{energy levels} are found in local minima of the washboard potential. 
+
+We \emph{manipulate} the qubit by adding microwave pulses which cause Rabi oscillations. 
+
+\begin{figure}[h]
+  \caption{Phase qubit.}
+  \centering
+    \includegraphics[width=\textwidth]{./SC_figures/Phase_Qubit.PNG}
+\end{figure}
+
+Question: What does the box around the function mean? That we are in the zero voltage state? 
+
+\item[Flux qubits] are Josephson junctions which will have a persistent current flowing continuously as external flux is applied. They are based on RF SQUIDS. 
+
+The qubit states are defined by direction of the circulating currents. We make use of the flux quantum to treat it as a qubit. When the external flux reaches $\frac{1}{2}\phi_0$ the two current energy levels are close together, which enables qubit operation. 
+
+\item[Potential for RF SQUID] is given by
+\beq
+U(\phi_T) = - E_J \cos{\left( \frac{2\pi \phi_T}{\phi_0} \right)} + \frac{(\phi_T - \phi_{ext} )^2}{2L}
+\eeq
+This potential always has two minima, like the wine-bottle potential. We can shift this potential intro three modes:
+\begin{itemize}
+\item $\phi_{ext} < \frac{\phi_0}{2} $ gives low left potential and high right potential
+\item $\phi_{ext} = \frac{\phi_0}{2}$ gives two equally deep potential
+\item $\phi_{ext} > \frac{\phi_0}{2}$ gives a high left potential and low right potential
+\end{itemize}
+
+
+\item[Consequence of double minima] there is tunnelling between the two minima, which hybridises the states of the potential wells. This causes them to move apart in energy. 	We can use this to sit ourselves at $\phi_{ext} = \frac{\phi_0}{2}$, then tunnelling causes there to e a ground state and an excited state. The ground state has a symmetric wavefunction while the excited state has an antisymmetric wavefunction. 
+
+Question: Exactly how is the degeneracy broken if we have tunnelling? 
+
+
+\item[Flux qubit readout] can be done by inductively couple the qubit to a neighbouring circuit. Then the current flow in the flux can be read out. 
+
+\item[Coupling flux qubits] can be done by invoking a flux coupling. This means that the state of one qubit will be altered by the state of the second qubit. Through this, we can invoke a CNOT gae. 
+
+Question: It is not clear how the coupling is performed. 
+
+\item[Charge qubits] the basis states of a charge qubit are charge state, representing the presence or absence of Cooper pairs. A charge qubit is formed by a a tiny superconducting island (known as a Cooper-pair box) coupled by a Josephson junction to a superconducting reservoir. 
+
+The potential is given by 
+\beq
+E = - E_J \cos{\phi}   + 4 E_c (N - N_g)^2
+\eeq
+
+Central to the setup is a Cooper pair box, it consists of an island the charge states of which it involves a macroscopic number of conduction electrons. 
+
+Readout is done by electrostatically coupling the island to an extremely sensitive electrometer. 
+
+\item[Coupling between qubits]  can be done by
+\begin{itemize}
+\item Flux qubits are coupled with an inductive coupling
+\item Charge qubits are coupled using a capacitive coupling
+\end{itemize}
+
+\end{description}
+
+\subsection{Metrological applications of superconducting currents}
+\begin{description}
+\item[screw this]
+
+\end{description}
+
 \end{document}
