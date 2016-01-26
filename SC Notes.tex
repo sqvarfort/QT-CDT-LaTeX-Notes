@@ -291,6 +291,8 @@ b^\dagger = \sum_k \varphi_k v_{k \uparrow} ^\dagger c^\dagger_{- k \downarrow}
 \psi( \vv{r}) = |\psi(\vv{r})| e^{i \phi(\vv{r})}
 \eeq
 
+Note: This is a solution to the Gross-Pitaevskii equation for a condensate in a macroscopic cylinder. 
+
 \item[Current operator] given by 
 \beq
 \vv{J}(r) = \frac{\hbar}{2m*i} \left[ \psi^\dagger( r) \vv{\nabla} \psi(r) - \psi(r) \nabla \psi^\dagger(r) \right]
@@ -300,6 +302,175 @@ b^\dagger = \sum_k \varphi_k v_{k \uparrow} ^\dagger c^\dagger_{- k \downarrow}
 \beq
 \vv{v} = \frac{\vv{J}}{density} = \frac{\hbar}{m*} \vv{\nabla} \phi
 \eeq
+which we can show if we write out the expression for the current. The requirements for this to hold are: the wavefunction amplitude $|\psi(\vv{r})|$ must (as in this case) be Hermitian, and the phase $\phi(\vv{r})$ must depend on the position of the superfluid. Note that his makes the phase a local phase, and not global. 
+
+Question: When I calculate the current, I get exactly $\frac{\hbar}{m*} \vv{\nabla} \phi$. Where does the density come into this? 
+
+Attempt at answer: I think that $\vv{J}$ might in the first case actually be the current density. 
+
+\item[Consequence of superfluid velocity] the curl of a gradient is always zero. Thus
+\beq
+\vv{\nabla} \times \vv{v} = \vv{\nabla} \times \frac{\hbar}{m*} \vv{\nabla} \phi = 0
+\eeq
+For proof, just write the whole thing out and remember that partial derivatives commute. 
+
+Consequence: The superfluid is \emph{irrotational}. 
+
+\item[Mass of fermionic superfluids] is $m* = 2m$ because we are dealing with Cooper pairs. 
+
+\item[Circulation] is the line integral around a closed curve of a velocity field. It is written
+\beq
+\Gamma = \oint_C \vv{v} \cdot \intd \vv{l}
+\eeq
+Essentially, it is a useful wauntity in hydrodynamics that helps us deal with various scenarios. 
+
+
+\item[Vortex derivation] As we start rotating the cylinder that contains the superfluid, the superfluid can remain stationary until we increase the angular velocity $\Omega$ to a certain point. A stationary liquid in a rotating container has high free energy (why?) thus at some point it is beneficial for the superfluid to introduce vortices. 
+
+Note that whenever we speak about a vortex, we speak about \emph{probability waves}! 
+
+We know that if we walk around the condensate and return to the same point, the uniqueness (single-valuedness) of the wavefunction requires that the phase $\phi$ changes by and integer $n $ of $2\pi$. Therefore, if we try and calculate the circulation of the fluid, we find
+\beq
+\Gamma = \oint_C \vv{v} \cdot \intd \vv{l} 
+\eeq
+Now, the vector $\vv{r}$ is a general displacement vector. If we confine the contour $C$ to a 2D plane, we can limit ourselves to a 2D geometry in polar coordinates. Then, we find
+\beq
+\vv{\nabla} = \frac{\p }{\p r} + \frac{1}{r} \frac{\p}{\p \theta}
+\eeq
+where $\theta$ is the angle we are walking around. Subsequently, the quantum phase $\phi(\vv{r})$ is now a function of radius $r$ and angle $\theta$ in some plane. We also find that 
+\beq
+\intd \vv{l} = r \intd \theta \vhat{\theta}
+\eeq
+This in turn means that 
+\begin{align}
+\oint_C \vv{v} \cdot \intd \vv{v} &= \frac{\hbar}{m*} \oint \left( \frac{\p \phi(r, \theta)}{\p r} \vhat{r}+ \frac{1}{r} \frac{\p \phi(r ,\theta)}{\p \theta}\vhat{\theta} \right) \cdot r \intd \vv{\theta}  \\
+&= \frac{\hbar}{m^*} \oint \frac{\p \phi(r, \theta)}{\p \theta} \intd \theta \\
+&= \frac{\hbar}{m^*} \left( \phi(r, 2\pi) - \phi(r, 0) \right) \\
+&= \frac{\hbar}{m^*} 2\pi n \\
+&= \frac{h}{m^*}n
+\end{align}
+This equation satisfies the situation where we have zero circulation, $\Gamma = 0$ which occurs for $n = 0$. However, we can also have finite circulation, which corresponds to irrotational vertices (with zero curl). \emph{The circulation is quantised}. 
+
+
+Thus, whereas the overall curl of the liquid $\vv{\nabla} \times \vv{v} 
+ $ must be zero, there can still be a local non-zero $\vv{v}$. For $\vv{v}$ to be non-zero, we require a change in $\phi$. When we have a vortex, there has been a change in $\phi$. In a 2D plane, this occurs at a single point (the axis of the vortex). However, since we can't have a discontinuous flux (which means that $\vv{\nabla} \phi$ would go to infinity, we require that the \emph{density} at that point also goes to infinity. That is, we know that 
+\beq
+I = n v
+\eeq
+The current must remain finite (maybe some kind of current conservation argument?) and therefore the density has to compensate for the velocity diverging. 
+
+
+ 
+\item[Irrotational vortex] A particle trapped in this vortex will go around the vortex, but will not spin. Therefore, this vortex will have no curl. Any particle trapped within the vortex will follow horizontal flow lines. If we know the circulation of the irrotational vortex, we can infer some other physical quantities. 
+
+The tangential component of the probability wave velocity around the vortex is
+\beq
+u_\theta = \frac{\Gamma}{2\pi}
+\eeq
+and the angular momentum per unit mass relative to the vortex axis is therefore constant
+\beq
+ru_\theta = \frac{\Gamma}{2\pi}
+\eeq
+This is how a superfluid can carry angular momentum. 
+
+\end{description}
+\subsubsection{Landau criterion for superfluidity}
+\begin{description}
+
+\item[Landau criterion] states that there exists a maximum velocity above which the fluid flow becomes dissipative and loses its superfluid nature. 
+
+\item[Landau criterion derivation] Consider a superfluid with velocity $\vv{v}$ relative to some container. We create an excitation in the superfluid of momentum $\hbar \vv{k}$. This can be done by introducing an obstacle or similar. 
+
+In the lab rest frame, creating this excitation costs the potential and kinetic energy given by 
+\beq
+E_k + \hbar \vv{k} \cdot \vv{v}
+\eeq
+The second term is the kinetic energy, since $\hbar \vv{k}$ is a momentum. The expression is minimised for momenta with negative $\vv{k}$ relative to $\vv{v}$. For large enough $k$, the cost of the excitation is negative, and therefore favourable. 
+
+Thus, for any $k$, the critical velocity is given by 
+\beq
+v_c = \min_{k} \frac{E_k}{\hbar k}
+\eeq
+The nature of $k$ depends on the excitation. 
+
+\item[Critical velocity in BCS limit] is given by
+\beq
+v_{c, BCS} = \frac{\Delta}{\hbar k_F}
+\eeq
+where $\Delta$ is the superconductor gap. 
+
+\item[Critical velocity interpretation] when an object moves through the superfluid faster than $v_c$, it will break Cooper pairs. For BECs however, where we deal with tightly bound bosons, we require more energy and so those liquids are usually stabler. Thus for large $k$
+\beq
+v_{c, BEC} = ck
+\eeq
+where $c$ is the speed of sound. 
+
+\end{description}
+\subsubsection{Superfluid response functions}
+\begin{description}
+\item[Redefinition of superfluid] The Landau criterion doesn't apply to complex spectra. Thus, we define the superfluid density is defined in terms of linear response theory. 
+
+\item[Response function] written $\chi_{ij}(q)$ determines what value the current $J_i(q)$ takes from a small perturbation $f(q)$ where $q$ is momentum. That is, the response function maps linear perturbations onto a current. The curent is given by 
+\beq
+J_i(q) = \sum_k \frac{k_i}{m} \psi^\dagger_{k + q/2} \psi_{k - q/2}
+\eeq
+
+\item[General $\chi_{ij}$ for isotropic system] in the limit of $q \rightarrow 0$ is 
+\beq
+\chi_{ij}(q) = \chi_T\left( \delta_{ij} - \frac{q_i q_j}{q^2} \right) + \chi_L \frac{q_i q_j}{q^2}
+\eeq
+
+
+\item[Superfluid part] given by 
+\beq
+\chi_S = \chi_L - \chi_T
+\eeq
+
+
+\end{description}
+
+\subsection{Experimental systems}
+\begin{description}
+\item[Ultracold alkali gases] Alkali gases can be lasercooled to near 0K. This enables them to form superfluids. Through the hyperfine interaction, we can manipulate the interaction properties of the atoms through Feshback resonance via magnetic fields. 
+
+\item[Feshback resonance] is achieved when one internal degree of freedom for a many-body system disappears. It occurs when the energy of a bound state of an interacomit potential is equal to the kinetic energy of a colliding pair of atoms. 
+
+
+\end{description}
+\subsubsection{Excitons and Polaritons}
+\begin{description}
+\item[Temperature-mass relationship] We know that
+\beq
+T \propto \frac{1}{m}
+\eeq
+Therefore, light particles don't need very low temperatures, which makes them good candidates. 
+
+\item[Excitons] are  bound pairs of electrons and holes. 
+
+\item[Exciton Hamiltonian] given by 
+\beq
+H = E_g  - \frac{\hbar^2 \nabla^2_e}{2m_c} - \frac{\hbar^2 \nabla^2_h}{2m_v} - \frac{e^2}{4 \pi \epsilon |r_e - r_h|}
+\eeq
+The last term is a Coulomb interaction. This has hydrogen-like solutions. 
+
+Question:  what are $m_c$ and $m_v$? 
+
+Attempt at answer: Could it be that since we are dealing with electrons in either the conduction band or valence band (since we are in a alkali metal which has bands) that the masses refer to the electrons in respective bands? Maybe this is the case, but they don't usually have different mass, do they? 
+
+
+\item[Hamiltonian for many excitons]  near the band gap is given by 
+\beq
+H = \sum_k \left( \epsilon_c(k) a^\dagger_{ck} a_{ck} + \epsilon_v(k) a^\dagger_{vk} a_{vk} \right) + \frac{1}{2} \sum_q \left( V^{ee}_q \rho^e_q \rho^e_{-q}  + V^{hh}_q \rho^h_q \rho^h_{-q} - 2 V^{eh}_q \rho^e_q\rho^h_{-q} \right)
+\eeq
+where
+\beq
+\rho^e_q = \sum_k a_{ck + q}^\dagger a_{ck}
+\eeq
+\beq
+\rho^h_q = \sum_k a_{vk-q} a^\dagger_{vk}
+\eeq
+
+
 
 
 \end{description}
