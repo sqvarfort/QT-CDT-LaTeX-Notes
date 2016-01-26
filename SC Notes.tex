@@ -438,6 +438,8 @@ J_i(q) = \sum_k \frac{k_i}{m} \psi^\dagger_{k + q/2} \psi_{k - q/2}
 
 \end{description}
 \subsubsection{Excitons and Polaritons}
+Note on this section: I have not added many details for this section. 
+
 \begin{description}
 \item[Temperature-mass relationship] We know that
 \beq
@@ -445,7 +447,7 @@ T \propto \frac{1}{m}
 \eeq
 Therefore, light particles don't need very low temperatures, which makes them good candidates. 
 
-\item[Excitons] are  bound pairs of electrons and holes. 
+\item[Excitons] are  bound pairs of electrons and holes. They are not stable quasiparticles since they can recombine. This happens when the electron goes back to the conduction band by emitting a photon. 
 
 \item[Exciton Hamiltonian] given by 
 \beq
@@ -457,10 +459,12 @@ Question:  what are $m_c$ and $m_v$?
 
 Attempt at answer: Could it be that since we are dealing with electrons in either the conduction band or valence band (since we are in a alkali metal which has bands) that the masses refer to the electrons in respective bands? Maybe this is the case, but they don't usually have different mass, do they? 
 
+Answer: Yep, electrons in different bands have different effective mass. It all depends on the curvature of the band. 
+
 
 \item[Hamiltonian for many excitons]  near the band gap is given by 
 \beq
-H = \sum_k \left( \epsilon_c(k) a^\dagger_{ck} a_{ck} + \epsilon_v(k) a^\dagger_{vk} a_{vk} \right) + \frac{1}{2} \sum_q \left( V^{ee}_q \rho^e_q \rho^e_{-q}  + V^{hh}_q \rho^h_q \rho^h_{-q} - 2 V^{eh}_q \rho^e_q\rho^h_{-q} \right)
+H = \sum_k \left( \epsilon_c(k) a^\dagger_{ck} a_{ck} + \epsilon_v(k) a^\dagger_{vk} a_{vk} \right) + \frac{1}{2} \sum_q \left( V^{ee}_q \rho^e_q \rho^e_{-q}  + V^{hh}_q \rho^h_q \rho^h_{-q} - 2 V^{eh}_q \rho^e_q\rho^h_{-q} \right) \nonumber 
 \eeq
 where
 \beq
@@ -469,8 +473,62 @@ where
 \beq
 \rho^h_q = \sum_k a_{vk-q} a^\dagger_{vk}
 \eeq
+Note that the Hamiltonian incorporates interactions for pairs with $q$ and $-q$ momenta. 
+
+The potential is  the Coulomb interaction:
+\beq
+V(q) = \frac{e^2 4\pi}{\epsilon q^2}
+\eeq
+
+Question: Thie doesn't really look like the Coulomb interaction that we are used to. 
+
+Attempt at answer: This could just be rewriting the form of the interaction. If $q^2$ if the wavevector, with 
+\beq
+q = \frac{2\ pi}{\lambda}
+\eeq
+we get modifications of the potential. Would need to write this out. 
+
+\item[Exciton condensation] Electron-hole pairs are similar to Cooper pairs, but they don't have to have opposite spin because the electron and the hole occupy different states anyway. 
+
+\item[Exciton creation operator] acting on the ground state $\ket{\Omega} $ gives
+\beq
+\ket{\Phi} = \frac{1}{\sqrt{V}} \sum_k \phi_{1s} (k) c_k^\dagger h_{-k}^\dagger \ket{\Omega}
+\eeq
+where $\phi_{1s}(k)$ is the Fourier transform of the 1s wavefunction. 
+That is, we create one hole and one electrom from the vacuum. 
+
+\item[Exciton condensate wavefunction] is
+\beq
+\ket{\Psi} = \mathcal{N} \exp{\sum_k \lambda_k a_{ck}^\dagger a_{vk} }
+\eeq
+
+\item[BEC and BCS crossover] can be done with excitons by changing the density. This is good because changing and controlling the interactions (which we might do for cold atoms with the Feshbach resonance) is hard. 
+
+\item[Microcavity-polaritons] are the normal modes resulting from the strong coupling between quantum well (QW) excitons and cavity photons. 
+
+\item[Polariton modes] can  be found by solving the Schrodinger equation for exciton and photon fields. 
+\beq
+i \p_t \bpmat \psi_\chi \\ \psi_C \epmat = H_0 \bpmat \psi_\chi \\ \psi_C\epmat
+\eeq
+
+\item[Polariton Hamiltonian] given by
+\beq
+H_0 = \bpmat \omega_\chi^0 - i \kappa_X & \Omega_R/2 \\ \Omega_R/2 & \omega_C(- i \nabla) - i \kappa_C \epmat
+\eeq
+Here, $\kappa_{X}$ and $\kappa_C$ are the decay rates of exciton and photon, and $\Omega_R$ is the Rabi frequency. Note that we have set $\hbar = 1$. 
+
+\item[Finding the eigenstates] We can diagonalise the Hamiltonian using a unitary transformation (no need for a Bogoliubov transformation since we are not concerned with preserving any commutator relations) to find the eigenstates. They are made of an equal mixture of light and matter. 
+
+We call them \emph{upper excitons} and \emph{lower excitons}. 
+
+\item[Exciton-Exciton interaction] is non-linear, and thus gives rise to some fundamental property of polaritons.  It can be written as
+\beq
+H_{XX} = \frac{1}{2A} \sum_{k, k', q}  V_q \psi^* _{X, k+q} \psi^*_{X, k'-q} \psi_{X, k} \psi_{X, k'}
+\eeq
+where $V_q$ is the effective interaction potential. 
 
 
+\item[Polariton condensate] is best thought of as the steady-state solution for a cavity and excitons. It balances pumping of photons and photon decays (escaping from the cavity). 
 
 
 \end{description}
