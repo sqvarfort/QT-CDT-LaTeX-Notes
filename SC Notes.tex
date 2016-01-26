@@ -1145,6 +1145,24 @@ Note: I recall Ed saying that this was a fairly handwavy argument...
 
 The reason for the $\frac{1}{2} \phi_0$ increase is because we gain $\frac{1}{2} \phi_0$ from the supercurrent and $\frac{1}{2} \phi_0$ from the measurement current. At all times, the flux in the loop remains quantised. 
 
+\item[$I_c$ intuition and explanation] Why does the critical current oscillate? After all, the critical current $I_c$ is a material property of the Josephson junction that doesn't really change. It changes when we add external resistor, or change the material in the junction. 
+
+However; as we apply flux, $I_c$ changes. Let us analyse the situation. We have a measurement current $I_b$ which is static and goes through both junctions. For flux $\phi_{ext}$ through the SQUID, there will be a screening current $I_s$ that runs so that generated flux $\phi_s$ cancels or enhances $\phi_{ext}$ so that we have an integer number of flux quantua $n \phi_0$ in the superconducting loop. 
+
+We have that the current in each junction is
+\beq
+I_{junction} = \frac{I_b}{2} \pm I_s
+\eeq
+We must now ask: what kind of current will we see oscillate in the Josephson junction due to 
+\beq
+I = I_c' \sin{\delta}
+\eeq
+This new $I_c'$ will be given by 
+\beq
+I_c' = I_c - \left( \frac{I_b}{2} \pm I_s \right)
+\eeq
+So depending on the strength of the screening current, which depends on $\phi_{ext}$, we will see a different $I_c'$ for each junction. That is, in the end we have to keep track of three different currents with three diferent origins. 
+
 \item[Maximum flux sensitivity] is achieved by maximising the largest possible modulation of the SQUID current. Requirements:
 \begin{itemize}
 \item Loop inductance $L$ \emph{as small as possible}
