@@ -236,7 +236,9 @@ T_F = \frac{E_F}{k_B}
 \eeq
 where $E_F$  is the Fermi energy.  $T_F$ is the temperature at which thermal effects are comparable with quantum efects associated with Fermi statistics. 
 
+
 \item[Virtual phonons] are needed to describe static lattice deformations surrounding a perturbation. They are a field/theoretical tool  required for the transfer of forces and such. 
+
 
 \item[Cooper problem] phonon cause a weak attraction between the electrons. 
 
@@ -249,7 +251,7 @@ Each electron has spin-1/2, which when added can have either spin 1 or spin 0.
 \item[BCS instability] not entirely sure what this is. I think it is adding an instability to the BEC treatment that we performed before. 
 
 \end{description}
-\subsection{Fermion ground-state wavefunction}
+\subsubsection{Fermion ground-state wavefunction}
 \begin{description}
 \item[Initial assumptions] we assume that a number of $N$ electrons in an alkali metal will have $N/2$ be in the spin-up state and $N/2$ be in the spin-down state. The electrons are moving in  a free 3D space subject to attractive interactions. 
 
@@ -281,6 +283,190 @@ Or, more succinctly,
 \beq
 b^\dagger = \sum_k \varphi_k v_{k \uparrow} ^\dagger c^\dagger_{- k \downarrow}
 \eeq
+Note the creation of two particles, one with $\vv{k}$ and one with $- \vv{k}$. 
+
+\item[Standard modus operandi] is to work with the chemical potential 
+instead of the many-party state. 
+
+
+
+\item[Many-body state] which is essentially a coherent state compared to Foxk state, which has of superpositions of states with different number of fermions given by 
+\begin{align}
+\mathcal{N} \ket{\Psi} &= \mathcal{N} e^{\sqrt{N_p}b^\dagger} \ket{0} \\
+&= \mathcal{N} \prod_k e^{\sqrt{N_p} \varphi_k c_{k \uparrow}^\dagger c^\dagger_{- k \downarrow}} \ket{0} \\
+&= \mathcal{N} \prod_k \sum_n  \frac{\left( \sqrt{N_p} \varphi_k c_{k \uparrow}^\dagger c^\dagger_{- k \downarrow} \right)^n}{n!} \ket{0} \\
+&= \mathcal{N} \prod_k \left( 1 + \sqrt{N}_p \varphi_k c_{k \uparrow }^\dagger c^\dagger_{- k \downarrow}   \right)\ket{0}
+\end{align}
+
+
+where we have used the fact that two fermions cannot be created in the same state, so any
+\beq
+\left( c_{k \uparrow}^\dagger \right)^2 \ket{0} = 0
+\eeq
+Note that the normalisation constant  $\mathcal{N} $ is not included in the equations in the notes, but I think that it should be there. 
+
+
+
+\item[Normalisation] We choose the constant
+\beq
+\mathcal{N}  = \prod_k \sqrt{1 + N_p |\varphi_k|^2}
+\eeq
+where
+\beq
+v_k = \sqrt{N_p } \varphi_k u_k = \sqrt{\frac{N_p \varphi_k^2}{1 + N_p \varphi_k^2}}
+\eeq
+
+\item[Fermionic BEC state] using the normalisation, we have
+\beq
+\ket{\Psi_{BEC} } = \prod_k \left( u_k + v_k c_{k \uparrow}^\dagger c_{- k \downarrow} ^\dagger \right) \ket{0}
+\eeq
+
+Question: This just seems like we have a superposition of the ground state (normalised) and Cooper pairs. We are describing any excitations with this? 
+
+
+
+\item[Fermion BEC occupation] There are two different cases which determine the occupancy. 
+
+For $k < k_F$ we have $u_k = 0, v_k = 1$. 
+
+For $k >k_F$ we have $u_k = 1, v_k = 0$. 
+
+
+
+\item[Fermion to boson crossover] Using the wavefunction above, and depending on the form of the normalisation, we can describe both point bosons and large Fermion paris.
+
+I think this means that the wavefunction above is strictly bosonic in both cases. 
+
+Question: I still don't see what the point boson part is, unless it is just the first term with $u_k$. 
+
+Question: What determines if I am working with bosons or fermions? 
+
+Answer: Since we can describe any wavefunction in terms of annihilation and creation operators, which determine the nature of the particles through their commutator or anti-commutator relations, the wavefunction tells us whether it describes fermions or bosons. 
+
+\end{description}
+
+\subsubsection*{Gap and number equation}
+
+
+In this section, we find the ground-state of the fermionic system by guessing the wavefunction and showing that it minimises the free energy $\mathcal{F}$. 
+\begin{description}
+\item[Many-body Hamiltonian for attractive interactions] given by 
+
+\beq
+H = \sum_{k, \sigma} \epsilon_k c_{k \sigma}^\dagger c_{k \sigma}  + \frac{U_0}{V} \sum_{k, k', q} c^\dagger_{k + \frac{q}{2} \uparrow} c^\dagger_{- k + \frac{q}{2} \downarrow} c_{k' + \frac{q}{2} \downarrow} c_{- k ` + \frac{q}{2} \uparrow}
+\eeq
+
+Question: What is the need for $q$ (or interpretation) in this equation? 
+
+Attempt at answer: $q$ I think is additional momentum that the particles gain through interaction. This momentum is split between the Cooper pairs. Maybe. 
+
+Answer: $q$ is an additional momentum with which the pairs move. They have opposite initial momentum, buta can through interactions gain momentum $	q$. 
+
+
+
+
+
+\item[Free energy] is given by the Hamiltonian minus the chemical potential and number. 
+\beq
+\mathcal{F}  = \braket{ H - \mu N} = \sum_k 2 \xi_k v_k^2 + \frac{U_0}{V} \sum_{k , k' } u_k v_k u_{k'} v_{k'}
+\eeq
+where $\xi_k = \epsilon_k - \mu$. 
+
+
+
+\item[Minimising the free energy] gives
+\beq
+v_k^2 = \frac{1}{2} \left( 1 - \frac{\xi_k}{E_k } \right)
+\eeq
+\beq
+u_k^2 = \frac{1}{2} \left( 1 +\frac{\xi_k}{E_k } \right)
+\eeq
+with 
+\beq
+E_k = \sqrt{\xi_k^2 + \Delta^2}
+\eeq
+Question: It is not clear to me at all how we minimise the free energy - with respect to what do we minimise it? It implies taking some derivativ? It should be, at least. 
+
+\item[Gap equation] given by 
+\beq
+\Delta = - \frac{U_0}{V} \sum_k u_k v_k = - \frac{U_0}{V} \sum_k \frac{\Delta}{2 E_k}
+\eeq
+Question: So... is this a recursive equation? I could just divide by $\Delta$ on both sides, the way it is written...
+
+Answer: No, because $E_k$ depends on $\Delta$. 
+
+
+\item[Number equation] for the total particle density $n = N/V$ is
+\beq
+n = 2 \int \frac{\intd^3 k }{(2\pi)^3} v_k^2
+\eeq
+
+By solving the gap and number equation simultaneously we can find the energy gap $\Delta$. 
+
+\end{description}
+\subsubsection{Hamiltonian Diagonalisation}
+Instead of guessing the wavefunction, we here make approximations to the Hamitlonian until we can diagonalise it. 
+\begin{description}
+
+\item[Momentum approximation] The fermion pairs with zero total momentum are the dominant part of interactions. We get Hamiltonian
+\beq
+H = \sum_{k \sigma} \epsilon_k c_{k \sigma}^\dagger c_{k \sigma} + \frac{U_0}{V} \sum_{k, k'} c_{k \uparrow}^\dagger c_{- k \downarrow}^\dagger c_{k'\downarrow} c_{k'\uparrow}
+\eeq
+
+\item[Mean-field decoupling] Refers to (I think) an approximation which states that there are no interactions, but we have some kind of effective field interaction. That is, individual interactions are replaced with some general term. 
+\beq
+C_k = \braket{c_{k \uparrow} c_{- k \downarrow} }
+\eeq
+which leads to Hamiltonian
+\beq
+H = \sum_{k \sigma} \epsilon_k c_{k \sigma} ^\dagger c_{k \sigma} - \Delta \sum_k \left( c_{k \uparrow} ^\dagger c^\dagger_{- k \downarrow} + c_{k \downarrow} c_{- k \uparrow} + \sum_{k'} C_{k'} \right)
+\eeq
+where
+\beq
+\Delta = \frac{U_0}{V} \sum_k C_k
+\eeq
+
+
+Question: Is this approximation based on something similar to high-energy physics, where the low-energy particles that travel through materials actually interact less than particles with high energy? 
+
+
+
+\item[Diagonalised Hamiltonian] Using a Bogoliubov transformation, we get new operators $\gamma_{k \uparrow}$ and $\gamma^\dagger_{- k \downarrow}$
+\beq
+H - \mu N = \sum_k E_k \left( \gamma_{k \uparrow}^\dagger \gamma_{k \uparrow} + \gamma_{k \downarrow}^\dagger k_{k \downarrow} \right)+ \sum_k \left( \Xi_k - E_k \right) - \frac{\Delta^2}{U_0/V}
+\eeq
+
+\item[Ground state] is given by the qussi-particle vacuum
+\beq
+\gamma_{k \sigma} \ket{\Omega} = 0
+\eeq
+
+\end{description}
+\subsubsection{BEC- BCS rossover}
+\begin{description}
+\item[BEC limit] is the limit of tightly bound pairs. We are not dealing with long-range Cooper pairs 
+
+The chemical potential is
+\beq
+\mu = - \frac{\hbar^2}{2ma^2} + \frac{\pi \hbar^2 an}{m}
+\eeq
+The first time is the binding energy and the second term is the mean-field contribution from attractive interactions. 
+
+Question: What is $a$ again? I forget... Is it the average interparticle distance, perhaps? 
+
+
+\item[BEC limit] is the limit of weak attractive interactions. Instead of tightly bound molecules of fermions, we get Cooper pairs that are quite spread out. Here
+\beq
+\mu \simeq E_F
+\eeq
+\beq
+\Delta \simeq 2 \epsilon_c e^{- \frac{1}{\rho(E_F)U_0}}
+\eeq
+where $\epsilon_c$ is the energy cut-off for interactions. 
+
+\item[Changes between regimes] All the plots the show the crossover depict the wavevector. Why is this important? 
+
+
 
 
 \end{description}
@@ -372,6 +558,13 @@ and the angular momentum per unit mass relative to the vortex axis is therefore 
 ru_\theta = \frac{\Gamma}{2\pi}
 \eeq
 This is how a superfluid can carry angular momentum. 
+
+\item[Difference between superfluidity and BEC] is that
+\begin{itemize}
+\item BEC is a property of the ground state. Superfluidity is a propery of excited states. 
+\item Ideal BECs are \emph{not} superfluid
+\item Not all of e.g. He needs to be in the ground state for superfluidity to occur. 
+\end{itemize}
 
 \end{description}
 \subsubsection{Landau criterion for superfluidity}
@@ -532,6 +725,212 @@ where $V_q$ is the effective interaction potential.
 
 
 \end{description}
+
+\subsection{Quantum Simulators}
+\subsubsection{Hubbard Model}
+\begin{description}
+\item[Confining atoms] We can make use of the Stark shift, which is the electric analogue of the Zeeman shift. Using the dipole approximation, the potential is given by 
+\beq
+V_{dip} = - \frac{1}{2} \vv{d} \cdot\vv{E} \propto \mbox{Re}(\alpha) E^2
+\eeq
+where $\alpha$ is the complex polarisability. The sign also depends on $\alpha$. 
+
+We can control $\alpha$ by detuning to the red or blue sideband. Thus, the laser influences the potential felt by the atoms. 
+
+\item[Polarisability] is the tendency of a charge distribution to be distorted fom its normal shape by an external electric field. 
+
+Question: I haven't seen this used in the dipole approximation before, but then I haven't worked much with the Stark shift....
+
+
+\item[Creating an optical lattice] can be done by using counterpropagating lasers. They will interfere and form a $\sin^2$ interference pattern. This works from 1D to 3D by adding more lasers. 
+
+\item[Optical lattice wavefunction] is similar to the Bloch wavefunction. 
+\beq
+\phi_n (\vv{p} ) = e^{i \vv{p} \cdot \vv{r}} u_n (\vv{r})
+\eeq
+
+\item[Low energy lattice Hamiltonian ] away from Feshbach resonance and at low temperatures, we have
+\beq
+H = - \sum_{\braket{ij}} J \left( b^\dagger_i b_j + b_j ^\dagger b_i\right)
+\eeq
+where the summation is over nearest-neighbour. $J$ is the hoping term which is determined by wavefunction overlap at the lattice sites. Note that this Hamiltonian assumes no interaction between the trapped particles. 
+
+We have  ngeative term because this is a binding energy imparted by the laser light. 
+
+\item[Bose-Hubbard Hamiltonian] By adding interactions between atoms on the same lattice site, we get
+\beq
+H = - J\sum_{\braket{ij}} \left( b^\dagger_i b_j + b_j ^\dagger b_i\right) - \sum_ \mu n_i + \frac{1}{2} \sum_i Un_i(n_i -1)
+\eeq
+$U$ is the strength of on-site interactions. 
+
+To this Hamiltonian, we could add
+\begin{itemize}
+\item Repulsion between atoms in neighbouring lattice sites
+\item Forbidden double-occupation
+\item Limit the number of atoms per site by limiting $\mu$
+\end{itemize}
+
+\item[Bose Hubbard model parameter] is $U/J$, which is the relative strength of on-site repulsion $J$ and kinetic energy $U$. 
+
+Changing the parameter changes the nature of the system. For example, we can induce phase transitions. 
+
+Question: I might have gotten this wrong since $J$ should be the attractive on-site potential. 
+
+
+\item[Weak interactions] for a small $U$ will cause the system to behave like bosons in free space. The condensate fraction decreases with increasing $U$. 
+
+\item[Strong interaction limit] for $U \rightarrow \infty$ we have no BEC fraction and all atoms are just localised in their individual sites. This is the Mott-sinsulator state. 
+
+\item[Mott insulator] is a material which should conductor eletricity, but which is actually an insulator, especially at low temperatures. This is due to electron-electron interactions. 
+
+
+\item[Tuning inter-particle interactions] can be done by using Feshbach resonance to tune the scattering length of the atoms. We achieve this by changing the external magnetic field. 
+
+\item[Imaging] after tuning th eHamiltonian, we wish to measure the positions of the atoms to find out how they behave under the dynamics. This can be done by shining a near-resonant laser onto the atoms so that they flouresce. 
+
+\item[Simulating magnetic interactions] Starting from some unit filled Mott insulator, applying a potential gradient means shiting neighbouring sites by energy $E$. This increases the probability of atoms tunnelling between sites. This affects the tunnelling rate of the atom in the target site. This is described by antiferromagnetic Ising type interaction. 
+
+\end{description}
+\subsection{Notes from the slides}
+
+\subsubsection{BCS Theory}
+For some reason, the treatment here is different to what there is in the notes. I think what is different is the way we perform the transformation. 
+
+\begin{description}
+\item[Hamiltonian] with the approximations is given by 
+\beq
+H - \epsilon_F N = \sum_{\vv{k}} \bpmat c_{k \uparrow}^\dagger & c_{- k \downarrow} \epmat \bpmat \xi_k & - \Delta \\ - \Delta & - \xi_k \epmat \bpmat c_{k \uparrow} \\ c^\dagger_{- k \downarrow} \epmat + \sum_k \xi_k - \frac{\Delta^2}{V_0} \Omega
+\eeq
+where
+\beq
+\xi_k = \epsilon_k - \epsilon_F
+\eeq
+Question: Does here, $\epsilon_F$ mean $k_F$? 
+
+\item[	Order parameter] given by 
+\beq
+\Delta = - \frac{V_0}{\Omega} \sum_k \bra{\psi} c_{- k\downarrow} c_{k \uparrow} \ket{+psi}
+\eeq
+
+\item[Mean-field Hamiltonial diagonalisation] can be done with 
+\beq
+c_{k \uparrow}^\dagger = u_k \gamma_{k \uparrow}^\dagger  + v_{k} \gamma_{- k \downarrow}
+\eeq
+\beq
+c_{- k \downarrow} = - v_k \gamma_{k\uparrow}^\dagger + u_{k } \gamma_{- k \downarrow}
+\eeq
+
+For the anti-commutator to hold, we require
+\beq
+v_k^2 + v_k^2 = 1
+\eeq
+Proof:
+\begin{align}
+\{c_k, c_k^\dagger \} &= \{ u_k \gamma_{k\uparrow} + v_k \gamma^\dagger_{-k\downarrow}, u_k \gamma_{k \uparrow}^\dagger + u_k \gamma_{-k\downarrow} \} \\
+&= \{u_k \gamma_{k \uparrow}, u_k \gamma_{k \uparrow}^\dagger \} + \{ u_k \gamma_{k \uparrow}, v_k \gamma^\dagger_{-k \downarrow} \\
+&+ \{ v_k \gamma_{-k \downarrow}, u_k \gamma_{k \uparrow} \} + \{ v_k \gamma_{- k \downarrow}, v_k \gamma^\dagger_{- k \downarrow} \} \\
+&= u_k^2 + v_k^2 \\
+&= 1
+\end{align}
+because we see that 
+\beq
+\{\gamma_{k \uparrow}, \gamma_{k \uparrow}^\dagger\} = 1
+\eeq
+\beq
+\{\gamma_{k\uparrow} , \gamma^\dagger_{- k \downarrow} \} = 0
+\eeq
+Question: Do we have to take into account the spin of the fermion when we write down these relations? 
+
+Attempt at answer: The spin should really only come in when we are creating states, and many of them. I believe that the only important part of the commutator relations come from the wavevector. 
+
+\item[Diagonalisation condition] is
+\beq
+2 \xi_k u_k v_k + \Delta ( v_k^2 - u_k^2) = 0
+\eeq
+
+
+\item[Diagonal Hamiltonian] is given by 
+\beq
+H - \epsilon_FN = \sum_{k \sigma} E_k \gamma_{k \sigma}^\dagger \gamma_{k \sigma} + \sum_k ( \xi_k  -E_k ) - \frac{\Delta^2}{V_0 } \Omega
+\eeq
+where the first term describes excitations and the second term describes pair-condensate energy. 
+
+\item[Quasi-particle excitations] given by 
+\beq
+E_k = \sqrt{\xi_k^2 + \Delta^2}
+\eeq
+
+The spectrum looks like the following figure. 
+
+
+
+\begin{figure}[h]
+  \caption{Exciton Spectrum.}
+  \centering
+    \includegraphics[width=0.5\textwidth]{./SC_figures/Exciton_Spectrum.PNG}
+\end{figure}
+
+
+\item[The energy gap $\Delta$]  We must calculate the average energy meeded to create a Cooper pair. 
+\beq
+\Delta = - \frac{V_0}{U} \sum_k \bra{\psi} c_{- k \downarrow} c_{k \uparrow} \ket{\psi}
+\eeq
+Note that in the undiagonalised Hamiltonian, this is exactly the off-diagonal element. 
+
+We can rewrite this by expanding into $\gamma_k$. We find that 
+\begin{align}
+\ket{\psi} c_{-k \downarrow} c_{k \uparrow} \ket{\psi} &= u_k v_k \left( - \gamma_{k \uparrow}^\dagger \gamma_{k \uparrow} + \gamma_{-k \downarrow} \gamma_{- k \downarrow}^\dagger\right) \\
+&+ u_k^2 \gamma_{- k \downarrow} \gamma_{k \uparrow} - v_k^2 \gamma_{k \uparrow}^\dagger \gamma_{- k \downarrow}^\dagger \ket{\psi} \\
+&= \ket{\psi} u_k v_k \left( 1 - \gamma_{k \uparrow}^\dagger \gamma_{k \uparrow} - \gamma-{- k \downarrow}^\dagger \gamma_{- k \downarrow}\right) \ket{\psi}
+\end{align}
+
+We also have that
+\begin{align}
+u_k v_k &= \frac{1}{2} \sqrt{\left( 1 - \frac{\xi_k}{E_k} \right)\left( 1 + \frac{\xi_k}{E_k} \right) } \\
+&= \frac{1}{2} \sqrt{ \left( \frac{E^2_k \xi_k^2}{E_k^2} \right) } \\
+&= \frac{1}{2} \frac{\Delta}{\sqrt{\xi_k^2 + \Delta^2}}
+\end{align}
+
+Note that this expression is incorrect in the notes! 
+
+Therefore, we find that
+\begin{align}
+\Delta &= - \frac{V_0}{U} \sum_k \bra{\psi} c_{- k \downarrow} c_{k \uparrow} \ket{\psi} \\
+&= - \frac{V_0}{2U} \frac{\Delta}{\sqrt{\xi_k^2 + \Delta^2}} \sum_k \left(1- \ket{\psi} \sum_\sigma \gamma_{k \sigma}^\dagger \gamma_{k \sigma} \ket{\psi}  \right)
+\end{align}
+Note that we have replaced $-k$ with $k$ because it is coming up in the sum anyway. 
+
+Question: The only thing I couldn't find was where that factor of $-1$ comes from. Perhaps it has to do with convention of the transformation. 
+
+
+\item[Physical origin of energy gap] Since all Cooper pairs are correlated, It is then claimed that in order to break one Cooper pair, we must change the energy of all the other pairs. Basically, I think they are stabler than other constructions, and therefore there is a larger energy gap that is required in order to get to the next level. 
+
+From the Hamiltonian, it is clear that $\Delta$ is not dependent on the energy levels, determined by $k$. 
+
+Energy gap for superonductors take the universal value
+\beq
+\Delta = 1.764 k_B T_c
+\eeq
+
+
+\item[Quasi-particle expectation value at zero temperature]  at $T = 0$ we have
+\beq
+\bra{\psi} \gamma_{k \sigma}^\dagger \gamma_{k \sigma} \ket{\psi} = 0
+\eeq
+
+which gives
+\beq
+1 = \frac{V_0}{2U } \sum_k \frac{1}{\sqrt{\xi_k^2 + \Delta^2}}
+\eeq
+
+which we can solve for
+\beq
+\Delta \simeq 2 \omega_D e^{- \frac{1}{N(\epsilon_F) V_0}}
+\eeq
+
+
+\end{description}
+\newpage
 \section{Classical Josephson Junctions}
 \begin{description}
 \item[Critical Temperature] called $T_C$, the temperature below which resistivity goes to zero. 
