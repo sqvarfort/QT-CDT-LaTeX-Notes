@@ -968,10 +968,10 @@ Here, $M$ is the magnetisation of the material, which is the magnetic dipole mom
 
 \item[Origin of zero resistance] is the fact that macroscopic electron pairs behave coherently. If an electron pair scatters off a phonon, the other Cooper pairs will move to compensate the phase difference. 
 
-\item8Superconducting coherence length] usually written $\chi$, and is derived from the Cooper pair length. It can also be thought of as the characteristic exponent of the variations of density of the superconducting component. In BCS theory, it is given by 
+\item[Superconducting coherence length] usually written $\xi$, and is derived from the Cooper pair length. It can also be thought of as the characteristic exponent of the variations of density of the superconducting component. In BCS theory, it is given by 
 
 \beq
-\chi = \frac{\hbar v_f}{\pi \Delta}
+\xi = \frac{\hbar v_f}{\pi \Delta}
 \eeq
 where $v_f$ is the Fermi velocity and $\Delta$ is the superconducting energy gap. 
 
@@ -994,6 +994,8 @@ n_s( \vv{r}) = |\psi(\vv{r})|^2
 
 \item[Magnetic flux through superconducting loop] is \emph{quantised}. This follows from the phase coherence. Boundary conditions stipulate that the phase must differ by $2\pi$ if you go around the loop once. 
 
+A more physical explanation is that the wavefunction must be unique, or single-valued everywhere in the material. Thus, going around the loop by $2\pi$ should yield the same value. This restricts the magnetic field that can go into the loop. 
+
 \item[Flux quantum] the minimal flux that is allowed through a superconducting loop, given by 
 \beq
 \phi_0 = \frac{h}{2e}
@@ -1011,7 +1013,15 @@ n_s( \vv{r}) = |\psi(\vv{r})|^2
 
 As the external magnetic field increases, more and more vortices appear. Finally, the whole sample is filled with vortices, and it becomes normal (resistive) again. 
 
-\item[Abrikosov vortex] appears in a Type II superconductor in an external field which is lower than $H_C$. A vortex can also be called a fluxon. The normal region in the vortex through which magnetic field can penetrate. 
+\item[Abrikosov vortex] appears in a Type II superconductor in an external field which is lower than $H_C$. A vortex can also be called a fluxon. The normal region in the vortex through which magnetic field can penetrate. Note that the vortex stretches all the way through the superconductor. 
+
+
+\begin{figure}[h]
+  \caption{Magnetic vortices.}
+  \centering
+    \includegraphics[width=0.5\textwidth]{./SC_figures/Vortex.PNG}
+\end{figure}
+
 
 Question: Is this just the `void' that appears in a superfluid? 
 
@@ -1029,11 +1039,13 @@ Attempt at answer:
 - Type I: $\frac{\lambda}{\xi} < \frac{1}{\sqrt{2}}$ \\
 - Type II: all other cases. 
 
+Note that this means that we have no vortices for Type I superconductors, and for Type II the radius of the vortex, $\lambda$ is larger than the vortex core, $\xi$, which makes sense. 
+
 \end{description}
 \subsubsection{The Energy Gap and Quasi Particles}
 \begin{description}
 
-\item[Energy required to break Cooper pair] is $2\Delta$. 
+\item[Energy required to break Cooper pair] is $2\Delta$. A Cooper pairs have energy lower than the Fermi energy. 
 
 \item[Temperature dependence] we find that\\
 - At $T = 0$ there are no phonons, just Cooper pairs \\
@@ -1234,7 +1246,15 @@ where $\omega_P$ is the plasma frequency.
 
 Question: What here is actually oscillating? 
 
-Attempt at answer: We said that the horizontal position of the ball is the phase difference. Therefore, it is probably the phase different that oscillates. 
+Attempt at answer: We said that the horizontal position of the ball is the phase difference. Therefore, it is probably the phase difference that oscillates. Since the voltage depends on the phase, 
+\beq
+V \propto \frac{d\phi}{dt}
+\eeq
+Since this is an oscillator, we can find a pendulum analogy. Here, the kinetic energy depends on the velocity of the pendulum (just like the voltage depends on the phase change). Therefore, the voltage should display sinusoidal behaviour from the harmonic motion. However, it would be very small, and averages to zero because we are not (like in the pendulum case) dealing with a square $v^2$. 
+
+
+
+
 \end{description}
 \subsubsection{Washboard model $T= 0$}
 Here we assume negligible damping. 
@@ -1265,6 +1285,8 @@ which means that the ball can escape. With no damping, the ball keeps rolling do
 \eeq
  throughout which implies finite $V$. 
  
+ Question: So we cannot just assume that the ball increases in speed, because it feels a continuous acceleration? The analogy does perhaps not work this far. 
+ 
  \item[Below the critical current $I_C$] the ball can keep rolling. It keeps rolling until the current is reduced to zero. 
  
  \item[Hysteretic] since the ball keeps moving until $I = 0$ if we are decreasing the current, but doesn't start rolling until $I = I_C$ if increasing the current, we conclude that the system displays hysterecis. 
@@ -1279,7 +1301,7 @@ which means that the ball can escape. With no damping, the ball keeps rolling do
 \tau_{TA}^{-1} = \frac{\omega_A}{2\pi} e^{- \Delta U/k_B T}  
 \eeq
 
-\item[Average number of escape attempts] per second given by $\omega_A /1 \pi$. 
+\item[Average number of escape attempts] per second given by $\omega_A /2\pi$. 
 
 \item[Switching current] written $I_{sw}$ is the value of the current at which the ball escapes by thermal fluctuation. The same $I_{sw}$ will not be found by repeating the measurement. 
 
@@ -1306,6 +1328,9 @@ Q>3
 These junctions are also known as underdamped. 
 
 \item[Non-hysteretic junctions] have smaller $Q$ and are called overdamped. 
+
+This is because when the junction is damped, decreasing $I$ below $I_c$ will cause the ball to stop because it experiences a drag force. Thus, the voltage goes to zero, and the junction follows a non-hysteretic behaviour. 
+
 
 
 
@@ -1336,15 +1361,17 @@ f_J = \frac{1}{2\pi} \frac{2e}{\hbar} V
 \begin{description}
 \item[External RF voltage] if the voltage is no longer constant but time-dependent, $Vl(t)$, we integrate the Josephson equation to find
 \begin{align}
-I_S(t) &= I_C \sin{\left( \int^t_0 \frac{2e}{\hbar} v(t') \intd t' + \phi_0 \right) } \\
-&= I_C \sin{\left( \frac{2eV}{\hbar} t + \frac{2eV_s}{\hbar \omega_s} \sin{\left( \omega_s t\right)} + \phi_0 \right)}
+I_S(t) &= I_C \sin{\left( \int^t_0 \frac{2e}{\hbar} v(t') \intd t' + \phi_0 \right) } 
 \end{align}
-where $\omega_s$ is the frequency of the voltage source. 
-
-Also note that 
+If we choose to apply an external voltage of the following form, 
 \beq
 v(t) = V + V_s\cos{\omega_s t}
 \eeq
+we find that
+\begin{align}
+I_S(t)= I_C \sin{\left( \frac{2eV}{\hbar} t + \frac{2eV_s}{\hbar \omega_s} \sin{\left( \omega_s t\right)} + \phi_0 \right)}
+\end{align}
+where $\omega_s$ is the frequency of the voltage source. 
 
 Question: What is the $V_s$ voltage?  
 
@@ -1361,13 +1388,13 @@ for a complex number $\alpha$.
 I_S(t) = I_C \sum_{n = - \infty}^\infty (-1)^n J_n \left( \frac{2eV_s}{\hbar \omega_s} \right) \sin{\left( (\omega_J - n \omega_s ) t + \phi_0 \right)}
 \eeq
 
-An interesting solution occurs when the source frequency is a multiple of the Josephson frequency $\omega_J = n \omega_s$. Then we see the 
+An interesting solution occurs when the source frequency is a multiple of the Josephson frequency $\omega_J = n \omega_s$. Then we see the  characteristic current steps. 
 
 \item[Shapiro steps for voltage standard] by connecting $N$ Josephson junctions together, we get very accurate Shapiro steps. They are given by 
 \beq
 V  = N \frac{\pi \hbar }{2} f_J
 \eeq
-The voltage is thus entirely determined by fundamental constants and the $f_J$, which can be precisely measured. 
+The voltage is thus entirely determined by fundamental constants and the $f_J$, which can be precisely measured. Note that this measurement has to be done with respect to some external clock reference frame. Thus I guess that this standard also depends on the time standard. 
 
 \end{description}
 
@@ -1378,6 +1405,10 @@ The voltage is thus entirely determined by fundamental constants and the $f_J$, 
 \Delta \phi = \frac{2e}{\hbar} \int^B_A \vv{A} \cdot \intd \vv{l}
 \eeq
 That is, the field must be quantised. 
+
+This can be done by converting the integral into a line integral around the ring, from 0 to $2\pi$. Then, we use Stokes theorem to integrate over the magnetic field, which just gives us the total flux into the loop. Since the wavefunction phase must be unique, this must be a multiple of $n 2\pi$. 
+
+Question: This explains why the flux is quantised, but not why the phase is affected by the vector potential in the first place. 
 
 \item[Effect of $B$ field on Josephson junction] the total phase difference does not both depend on the difference between the two materials and the phase induced by the external magnetic field. We find
 \beq
@@ -1765,6 +1796,7 @@ Question: Derivation?
 
 
 \end{description}
+\newpage
 
 \section{John Fenton's Lectures - Three parts}
 \subsection{Quantised Josephson junctions}
@@ -1928,8 +1960,75 @@ Readout is done by electrostatically coupling the island to an extremely sensiti
 \end{description}
 
 \subsection{Metrological applications of superconducting currents}
+\subsubsection{Voltage standard}
 \begin{description}
-\item[screw this]
+\item[Shapiro steps] As already explored previously, the Shapiro steps appear when we apply an externally varying voltage $v(t)$. The resulting equation has Bessel function solutions, which ultimately tells us that the DC supercurrent is nonzero if
+\beq
+\omega_J = n \omega_S
+\eeq
+where I think $\omega_J = \omega_P$ from previous notation (or perhaps $\omega_A$, since we have a non-zero current? ), and $\omega_S$ is the oscillation of the voltage source. 
+
+We find
+\beq
+V_n = n \frac{h }{2e}\nu
+\eeq
+which implies
+\beq
+\Delta V = \frac{h}{2e} \nu
+\eeq
+where $\nu$ is some kind of frequency instead of angular frequency, I think it is $2\pi \omega_S$. 
+
+\item[External microwaves] If we now apply external microwaves, that is, not an external flux $\phi_{ext}$ from a static magnetic field, but an EM field that varies in time, we see that the Shapiro steps appear as well. 
+
+Recall the IV diagram for a single junction, which shows the dicontinuous increase in voltage above $I_c$. For an applied 70 GHz filed, we see Shapiro steps again. 
+
+Question: This mechanism isn't clear to me. The previous treatment told us the Shapiro steps originate from a AC voltage applied to the junction.  So why do external microwaves, unless they induce an AC voltage cause 
+\end{description}
+
+\subsubsection{Current Standard}
+\begin{description}
+\item[Electron pump] based on semiconductor 2D electron gases, is the leading candidate for a current standard. 
+
+It works by transferring one electron at a time. The entrance-gate frequency is modulated at a known frequency. 
+
+\item[Relationship to frequency] From the slides, I think it says that the relationship between a frequency standard and a current standard is not clear. 
+
+\item[Conjugate variable relationship] $N$ and  $\phi$ are conjugate variables. The derivative of $N$ and $\phi$ are current and voltage. 
+
+I think the question is whether we can relate the voltage standard and get an equally accurate current standard. 
+
+Question: If they are conjugate variables, we should have an uncertainty relation between $I$ and $V$. How would this affect things? 
+
+\item[Charge-Flux duality] it doesn't really matter in which representation we work in. The Hamiltonia
+\beq
+H = E_C ( n - n_g)^2 - \left( \frac{E_J}{2} \sum_n \ket{n+1}\bra{n} + \ket{n}\bra{n+1} \right)
+\eeq
+This is in the number representation. I don't know what $n_g$ is here. Note that $E_J$ is the coupling energy in this Hamiltonian, and that it couples various number states. These number states represent Cooper paris. I think that the coupling terms represent the tunnelling - a Hamiltonian that on one side of the junction adds another pair. 
+
+The same Hamiltonian can be written for an $n$ number of flux eigenstates. 
+
+\end{description}
+\subsubsection{Conduction in nanowires}
+\begin{description}
+\item[Connected superconductors] can be connected by a nanowire. Recall the order parameter $|\psi|$, which is the phase coherence across the sample.  The nanowire acts as a thin pipe between the superconductors. 
+
+\item[Fluctuations] the order parameter $|\psi|$ can fluctuate to zero in the wire. This requires energy. 
+
+Question: Why does this require energy? It is fair enough that you need energy for fluctuations, but what mechanism lies behind this? 
+
+\item[Phase slip] can occur in the nanowire. This changes the difference between the phase in the two superconductors by a multiple $2\pi$. 
+
+
+
+\begin{figure}[h]
+  \caption{Phase slip.}
+  \centering
+    \includegraphics[width=0.5\textwidth]{./SC_figures/PhaseSlip.PNG}
+\end{figure}
+
+
+\item[Phase slip junction] An alternative to electronn pumps in an attempt to create a current standard. The phase slip junction will behave as a dual of the Josephson junction. I gues instead of Cooper pairs tunnelling through the junction, we have phase quanta changing. 
+
 
 \end{description}
 
