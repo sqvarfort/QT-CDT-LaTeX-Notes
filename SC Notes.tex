@@ -2029,7 +2029,122 @@ Question: Why does this require energy? It is fair enough that you need energy f
 
 \item[Phase slip junction] An alternative to electronn pumps in an attempt to create a current standard. The phase slip junction will behave as a dual of the Josephson junction. I gues instead of Cooper pairs tunnelling through the junction, we have phase quanta changing. 
 
+The fluctuation of $|\psi|$ to zero means that the tiny part of the junction where this happens returns to the normal state. This blocks the supercurrent along the axis. This is what changes the phase by $2\pi n$. 
+
+\item[Properties of phase-slip junction] are exactly the same as the Josephson junction, but with $V$ and $I$ exchanged. This includes the $IV$ hysteretic diagrams, Therefore, we should also be able to see Shapiro steps for the current. 
+
+\item[Main challenge] is to fabricate a nanowire that is good enough to  test this. It should have a width of around $10 $ nm. It must also have resistance
+\beq
+R > R_Q = \frac{h}{4e^2}
+\eeq
+in order to provide damping. We also need to be able to cool it down. People at Surrey are currently thing to do this. 
+
+\item[Thermally activated phase slips] similar to the thermally activated voltage. 	They cause short voltage pulses, and the nanowire to become slightly resistive. 
+
+
+\end{description}
+\subsection{Cryogenic Experimental Techniques}
+\begin{description}
+\item[Necessary temperature scale] for experiments with Josephson junctions is around mK. 
+
+\item[A cooling progression] cooling to increasingly low temperatures:
+\begin{itemize}
+\item Cool to low K with liquid N
+\item Cool with He-4
+\item Cool with He-3
+\item Cool by pumping, warmest He removed
+\item Activated C absorbation
+\end{itemize}
+
+\item[Dilution fridge] A dilution fridge works by 
+\begin{itemize}
+\item Mixing together He-3 and He-4
+\item He-3 mixes into He-4
+\item He-3 evaporates first, lowering the concentration of He-3 in He-4
+\item New He-3 will mix into the He-4, increasing the entropy and thus decreasing the heat
+\item He-3 is pumped away 
+\end{itemize}
+
+\item[Cryocoolers] use gas expansion to obtain cooling to cryogenic temperatures. Work supplied by gas compression at high temperatures. Cooling achieved by gas expansion in the cold part of the system. 
+
+We can also have coolers based on various cooling cycles. 
+
+
 
 \end{description}
 
+\subsubsection{Exclusion of EM noise}
+\begin{description}
+\item[Sources of EM noise]
+\begin{itemize}
+\item Electrical signals
+\item Magnetic signals
+\item EM signals
+\end{itemize}
+
+
+\item[Noise protection] done by 
+\begin{itemize}
+\item Faraday cage
+\item Magnetic shielding techniques, sheilds, high mu-metal
+\item Twisting signal lines
+\item Filtering
+\end{itemize}
+
+\item[Filtering] We can filter signal lines to remove noise at frequencies outisde the range of interest. 
+
+\item[Exclusion of EM noise]
+We can maximise the signal-to-noise ratio by
+\begin{itemize}
+\item Low-T amplification. We can use high-electron-mobility-transistor
+\item Lock-in amplifier can source and detect signals at only a few Hz. 
+\end{itemize}
+
+Question: I have no information about the first method. Can't find stuff online. 
+
+\item[Exclusion of thermal noise] can be done with 
+\begin{itemize}
+\item Radiation shields
+\item Evacuated spaces for conduction/convection noise
+\item Conduction: thin-walled tubes, use non-metallic materials, wiring up a thermal anchor
+\end{itemize}
+
+\item[Sources of noise in JJ systems] We have several kinds of noise. 
+
+$1/f$ noise in Josephson junctions arises from two-level fluctuations. Electrons hop between localised trap states. 
+
+\item[Consequences of noise] are
+\begin{itemize}
+\item $I_c$ fluctuations
+\item charge fluctuations
+\item magnetic flux fluctuations
+\item non-thermal quasi-particles caused by infrared photons
+\item trapped flux and trapped charge
+\end{itemize}
+
+\item[Noise Hamiltonian ] for qubits can be written as
+\beq
+H = - \frac{1}{2} \left( \epsilon \sigma_z + \Delta \sigma_x \right)
+\eeq
+
+\item[Charge qubit noise] Charge qubits are sensitive to charge noise. We can minimise the noise by operatoing at the most stable spot, which is closest in terms of the energy crossing
+
+\item[Phase qubit] is sensitive to phase noise. It is also sensitive to charge noise and flux noise. It is difficult to reduce the noise, but can do so by tuning $I/I_c$. 
+
+Question: How do we have to tune the current? It is not clear. 
+
+\end{description}
+\subsubsection{Misc stuff}
+\begin{description}
+\item[Quantronium] tow Josephson junctions connected to a central island, with a larger Josephson junction connected in series with a loop. 
+
+\item[Transmon qubits] a transmon is a type of superconducting charge qubit. It is designed to have reduced sensitivity to charge noise. This is done by increasing $E_J$ to $E_c$. Thus resulting energy levels have large spacings that are approximately independent the offset charge. 
+
+\item[Fluxonium qubit] is an array with a large $E_J/E_c$ ratio. It can be used to provide a large inductance, $L_A>L_J$, where $L_A$ is the inductance of an external coil. 
+
+\item[D-Wave] is using many many coupled flux qubits. 
+
+
+
+\end{description}
 \end{document}
