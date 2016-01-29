@@ -1,0 +1,390 @@
+\input{UCLHeader.tex}
+\input{UCLCommands.tex}
+\begin{document}
+\title{Quantum Dots \& Wires - Summary}
+\author{Sofia Qvarfort}
+\maketitle
+
+\section{Elzeman's Lectures}
+\subsection{Motivation}
+\begin{description}
+\item[Core point] It is not about building the best qubit using different approaches, but about where each specific qubit excels. 
+
+\item[Advantages of optically active dots and wires]  include the fact that they
+\begin{itemize}
+\item Allows for light-matter interface 
+\item Use matter qubits to generate specific states of light
+\item Use light to control qubits
+\end{itemize}
+
+\end{description}
+\subsubsection{Semiconductor band structure}
+\begin{description}
+\item[Diamond lattice structure] given by 
+\beq
+\vv{R} = n_1 \vv{a}_1  + n_2 \vv{a}_2 + n_3 \vv{a}_3
+\eeq
+
+Can also be described by a unit cell with lattice constant $a$. 
+
+\item[Zincblende lattice] group of GaAs, and InAs. Same as diamond lattice. 
+
+Crystal lacks inversion symmetry, which leads to piezoelectric behaviour. 
+
+\item[Crystal translational symmetry] means that
+\beq
+U(\vv{r} + \vv{R}) = U(\vv{r})
+\eeq
+
+\item[Wavefunction in crystal potential] are given by 
+\beq
+\psi_k ( \vv{r}) = e^{i \vv{k} \cdot \vv{r} } u_k
+\eeq
+
+where $u_k(\vv{r})$ a the periodic Bloch part of the wavefunction. 
+
+\item[Bloch electrons] behave almost like free electron, but with modified effective mass. 
+\beq
+E = \frac{\hbar^2k^2}{2m^*}
+\eeq
+where
+\beq
+m^* = \hbar^2 \left(\frac{d^2E}{dk^2} \right) ^{-1}
+\eeq
+
+
+Question: I always forget how to actually solve this equation. 
+
+Attempt at answer:  I think the energy used here is actually different. 
+
+\item[Efect of crystal potential] is to lift degeneracies, like open gaps, between bands 0 and 1, or 1 and 2. Etc. 
+
+
+\item[Band formation] Bands are formed by bringing atoms close together. The discrete energy levels will interfere until there are efectively an infinite number of energy levels, which form continuous bands.
+
+\item[Covalent solids] (which includes Si, GaAs, InAs) the VB is completely occupied. 	The CB 	is completely empty. 
+
+\item[Conduction band properyties] include
+
+\begin{itemize}
+\item has s-like symmetry
+\item Derives from anti-bonding s-states since orbital angular momentm $l = 0$ leads to $u_{nk}(\vv{r})$ 
+\item Completely empty for covalent solids
+\end{itemize}
+
+\item[Valence band properties]
+\begin{itemize}
+\item p-like symmetry
+\item Completely filled for covalent solids
+\item Derives from bonding p-states with angular momentum $l = 1$, which leads to $u_{kn}(\vv{r})$ having p-like symmetry
+\end{itemize}
+
+Question: What is meant by p-like and s-like symmetry?
+
+Answer: It refers to the parity of the state - it is symmetric or anti-symmetric? I think that s-states are completely symmetric (spheres) whereas p-like states only have one kind of symmetry. And also, as mentioned, it refers to the angular momentum of the state. 
+
+\item[Properties of GaAs and InAs] include
+\begin{itemize}
+\item Direct bandgap
+\item Non-degenerate CB states
+\item Degenerate VB states around $\Gamma$ point
+\item The degenerate states are heavy holes and light holes around $\Gamma$ point
+\item Can neglect split-off band
+\item Electrons and holes lower their energy by moving from GaAs into InAs
+\item GaAs quantum dot in InAs is optically active
+\item InAs lattice constant $a_{InAs} = 1.7 a_{GaAs}$
+\end{itemize}
+
+\item[Direct bandgap] occurs if the minimal energy state in the CB and the maximal energy state in the VB have the same $\vv{k}$ vectors. This means that the electron and hole can readily recombine to emit a photon. 
+
+\item[Indirect bandgap] occurs if the minimal energy state in the CB and the maximal energy in the VB have different $\vv{k}$ vectors. Here, the electron and hole cannot recombine to emit a photon, without first transferring some momentum to the crystal lattice. 
+
+Question: Exactly why must the momenta match up? I would have thought that any additional momenta would go into the energy of the photon, like in high energy physics. However, maybe the mechanism here is somewhat different. 
+
+\item[$\Gamma $ point] is the point where $\vv{k} = 0$. It is the middle of the Brillouin zone. This is where we get the holes, for maximum and minimum energy for electrons and holes. 
+
+
+\item[Split-off band] is a band below the VB. We rarely need to consider it. 
+
+\end{description}
+\subsubsection{Spin-Orbit Interaction}
+\begin{description}
+\item[Adding angular momenta] is done with 
+\beq
+\vv{J} = \vv{L} + \vv{S}
+\eeq
+where $\vv{L}$ is orbital angular momentum and  $\vv{S}$ is spin angular momentum. 
+
+\item[Spin-Orbit Hamiltonian] given by 
+\beq
+H_{so} = \lambda_{so} \vv{L} \cdot \vv{S}
+\eeq
+where $\lambda_{so}$ is a coupling constant that depends on geometry and material. 
+
+\item[Hamiltonian Eigenstates] We can work around the $\Gamma$ point. There, we have electrons and holes with degenerate energy. We find that the eigenstates of the $\vv{S}$ operator are
+\beq
+\ket{\frac{1}{2}, \frac{1}{2} } = \ket{\uparrow}
+\eeq
+\beq
+\ket{\frac{1}{2}, - \frac{1}{2}} = \ket{\uparrow}
+\eeq
+
+
+
+\end{description}
+
+
+\section{Transport}
+
+\subsection{Conductance of Ballistic conductor between reflectorless contacts}
+\begin{description}
+\item[Conductance] Describes how easy it is for a current to travel through a material. Classically given by 
+\beq
+R = \sigma \frac{vA}{L}
+\eeq
+
+\item[Derivation of current] Start with the current $I = env$ where $n$ is the number of particles and $v$ is the velocity of the particles. This holds for uniform electron gas of $n$ electrons. 
+
+Consider then $+k$ modes. We denote the current $I^+$ and the distribution they follow $f^+$. We could do the same for $-k$ modes, but we shall do so later. Let the electrons be distributed according to 
+\beq
+n = \frac{f^+(E)}{L}
+\eeq
+where $L$ is the length of the conductor. Then, the current over all $k$ modes will be
+\beq
+I^+ = \frac{e}{L} \sum_k vf^+(E) = \frac{e}{L} \sum_k \frac{1}{\hbar} \frac{\p E}{\p k } f^+ (E)
+\eeq
+where
+\beq
+v  = \frac{1}{\hbar} \frac{\p E}{\p k}
+\eeq
+Then, we must convert the sum into an integral. This is done as follows:
+\beq
+\sum_k \rightarrow 2 \times \frac{L}{2\pi} \int \mathrm{d}k
+\eeq
+
+Question: It is not clear to me how this conversion happens. I presume that you need $L$ to cancel out the units of $\mathrm{d} k $. 
+
+Thus we obtain 
+\beq
+I ^+ = \frac{2 e}{h} \int^\infty_\epsilon f^+(E) \mathrm{d} E
+\eeq
+where $\epsilon$
+
+\end{description}
+
+\newpage
+\section{Mark Buitelaar's Lectures - Quantum Transport}
+\subsection{Introduction}
+\begin{description}
+\item[Quantum Dot] a 0-dimensional structure which contains one hole and/or electron. It can e.g. be used for quantum information processing. By making use of quantum properties, an electron can be captured and manipulated in a quantum dot. 
+
+\item[Quantum Wire] a 1-dimensional structure, often a carbon nanotube, where quantum effects influence the electron transport properties. 
+
+\item[Some examples] of quantum dots and wires include
+\begin{itemize}
+\item Graphene 
+\item Carbon nanotubes
+\item Si/SiGe heterostructures 
+\item Si nanowires
+\item GaAs based quantum dots
+\item InAs quantum dots
+\end{itemize}
+
+\item[Probing properties] is often done by simply connecting the quantum wire or dot to an external voltage and then measuring the other electrical properties. 
+
+\item[States in a waveguide] which we have studied well can be used to model the behaviour of quantum states inside a wire, have energy
+\beq
+E_n(k_x) = \frac{\hbar^2 k_x^2}{2m} + \frac{\pi^2 \hbar^2}{2m} \left( \frac{n_y^2}{a^2 } + \frac{n^2_z}{b^2} \right)
+\eeq
+where $a$ is the width of the waveguide in the $z$ direction and $b$ in the $y$ direction. 
+
+
+\end{description}
+\subsection{Conductance from transmission}
+\begin{description}
+\item[Ballistic conductor] has no resistivity from the scattering of electrons. A ballistic conductor differs from a superconductor by the absence of the Meissner effect. The only scattering process that occurs is when electrons scatter off the walls or the ceiling of the conductor, otherwise they follow Newtons 2nd law of motion. 
+
+\emph{Properties}: \\
+- $T(E) = 1$ \\
+- 
+
+\item[Boltzmann transport equation] can be used to write down an expression for the current. We find
+\beq
+I = \frac{2e}{h} \int^{\infty}_{- \infty} f^+(E)M(E) T(E)\intd E
+\eeq
+where $f^+(E)$ is the deviation form the equilibrium distribution (it is the perturbation), $M(E) $ is the number of propagating modes in the channel and $T(E)$ is the transmission probability, which for a ballistic conductor has $T = 1$. 
+
+\item[Ballistic conductor current] if we insert the Fermi energy $\mu_1$ and $\mu_2$ in the integral limits, we find that
+\beq
+I = \frac{2e^2}{h} M \frac{\mu_1 - \mu_2}{e} 
+\eeq
+where we (I think) have assumed that $M(E)$ is independent of the energy. 
+
+\item[Current formula derivation] Start by considering a single mode $M = 1$. The occupation of the states with $k$ is determined by the Fermi function $f^+(E)$ (which I presume is the Fermi-Dirac distribution function). Approximate the electrons in the conductor to be a free-moving gas. If the gas is uniform and has a density of $n$ electrons per unit length, they will carry a current if all electrons move with velocity $v$ (modulated by the Fermi distribution). The current is then given by 
+\beq
+I = env
+\eeq
+Let the electron density of a single $+k$ state be $n = 1/L$, where $L$ is the length of the conductor. Then, the current is given by 
+\beq
+I = \frac{e}{L} \sum_k vf^+(E)
+\eeq
+We can then obtain the velocity from the dispersion relation, such that 
+\beq
+v = \frac{1}{\hbar}\frac{\p E}{\p k}
+\eeq
+and by turning the sum into an integral, through the following way
+\beq
+\sum_k \rightarrow 2 \frac{L}{2\pi} \int \intd k
+\eeq
+
+Question: How can I justify this transformation? 
+\beq
+I = \frac{2e}{h} \int^{+\infty}_\epsilon f^+(E) \intd E
+\eeq
+
+
+\item[Contact Conductance] from the above expression for the current, we identity
+\beq
+ G_C = \frac{2e^2}{h} M
+\eeq
+which is the conductance. This is modified for a non-ballistic conductor by multiplying it by the transmission probability $T$. M
+
+Note that the contact conductance increases in steps as the number of modes $M$. Note also that the resistance does not scale with length or area of the conductor. 
+
+Question: Then how do we determine the number of modes? Surely this is a property of the material itself? 
+
+
+\item[Contact Resistance] the resistance is the inverse of the conductance. We find that
+\beq
+R = G_C^{-1} = \frac{h}{2e^2 M} \sim 12.9 k \Omega /M
+\eeq
+
+\item[Difference in Fermi energy] as can be seen for the formula for the current, we find that the current flow depends on the difference in Fermi energy. All electrons will move around randomly, but only when we have this energy difference will the electrons strive towards a lower equilibrium energy, and therefore move, which in turn carries a current. 
+
+\item[Transverse modes] also called subbands are available to electrons in the conductor. Because of the Pauli exclusion principle, only one electron (with the same spin) can occupy the band at one time. 
+
+Each subband has its own dispersion relation with a cutoff energy, $\epsilon_N = E(N, k=0)$ below which it cannot propagate. Basically, one the mode reaches this energy, the energy just keeps increasing without any changes to $k$. 
+
+\item[Number of transverse modes] can be obtained by counting the number of modes below the cutoff energy. 
+\beq
+M (E) = \sum_N \theta(E- \epsilon_N)
+\eeq
+where $\theta$ is the Heaviside step-function, and $N$ is the number of electrons. 
+
+\item[Fermi energy] is given by
+\beq
+E_F = \frac{\hbar^2 k^2_F}{2m}
+\eeq
+
+\end{description}
+
+\subsection{Conductance from Transmission}
+\begin{description}
+\item[Landauer formula] is given by 
+\beq
+G = \frac{2e^2}{h} MT
+\eeq
+This is the general formula for conductance, where we have taken into account the number of modes $M$. 
+
+\item[Resistance] in general resistance is given by 
+\beq
+G^{-1} = \frac{h}{2e^2M} + \frac{h}{2e^2 M} \frac{1 - T}{T}
+\eeq
+where we write the formula in this way because the transmission probability adds. 
+
+\item[Conductance with reflection]
+Consider having a conductor between two leads. We can calculate the net current $I_2$ by calculating the current difference:
+\beq
+I_2 = I_1 ^+ - I_1^-
+\eeq
+Now, consider that $I^+_1$ is the incoming current, and $I^-_1$ is the outgoing current, which is reflected back from the unsuccessful transmissions. We find
+\beq
+I_1^+ = \frac{2e}{h} MT(\mu_1 - \mu_2)
+\eeq
+\beq
+I_1^- = \frac{2e}{h} M(1-T)(\mu_1 - \mu_2)
+\eeq
+Thus the difference is
+\beq
+I = I^+_1 - I_1^- = \frac{2e}{h} MT(\mu_1 - \mu_2)
+\eeq
+
+\item[Electrochemical potential] For a conductor connected to two contacts, we can divide it up into areas. If there exists a difference in electrochemical potential $(\mu_1 - \mu_2)$, it will drop in the middle of the conductor. 
+
+\item[Coherent conductor] I have found no definition for this, but assume that a conductor is coherent if we see quantum behaviour. Basically, the phenomena happen on such large (or long) scales that we can observe them without them decohering. 
+
+However, it could equally well be that coherent refers to the way some other phenomena works. 
+
+\item[Coherent conductor interference] Consider two barriers with a conductor in-between them. As an electron travels across the distance, it picks up a phase $e^{i \chi}$. An incoming electron will reflect a number of times between the barriers before being transmitted. 
+
+Insert derivation of probabilities from problem sheet. 
+
+\end{description}
+
+\subsection{Nanotube quantum dot}
+In this section, we describe and island lying between a source and a gate. Electrons from the source will hop onto this island, which in turn acts like a capacitor. 
+
+The equivalent circuit for this situation is described by two capacitors $C$ and $C_g$ for the gate in series. 
+
+\begin{description}
+\item[Conductance behaviour] with temperature goes approximately as
+\beq
+G_{peak} \sim \frac{1}{T}
+\eeq
+
+\item[Charging energy] is given by 
+\beq
+E_C = \frac{e^2}{C}
+\eeq
+where $C$ is the total capacitance of the quantum dot. 
+
+\item[Charge on the island] is quantised. We find
+\beq
+- q_2 + q_1 = eN
+\eeq
+where $q_2$ and $q_1$ are the respective charge on the island. 
+
+\item[Total electrostatic energy] is the energy accumulated in the capacitors and the work done by the voltage source to transfer the charge $q_2$ to the gate electrode. 
+
+Question: What role does $q_1$ play? Is it the charge that is already on the island? 
+
+The energy is
+\beq
+E_{el} = \frac{1}{2} \left( \frac{q^2_1}{C} + \frac{q^2_2}{C_g} \right) - q_2 V
+\eeq
+
+\item[Capacitor charge-voltage relationship] is
+\beq
+CV = q
+\eeq
+Thus, for the island and the gate, 
+\beq
+C V_1 = q_1
+\eeq
+\beq
+C_g V_2 = q_2
+\eeq
+
+
+\item[Addition energy] is the charge in the electrochemical potential as electrons are added to a quantum dot. It is given by 
+\beq
+\Delta E_{add} = \mu(N+1) - \mu(N) = \frac{e^2}{C_\Sigma} + E_{M+1}^K - E_M^K
+\eeq
+where 
+
+For spin degeneracy, $E_{M+1}^K - E_M^K$ can be zero. 
+
+\item[Electrochemical potential of quantum dot] The electrochemical potential $\mu$ is the difference between the two potentials. Think of the lift between the two energy levels. $\mu$ is different depending which energy level is already occupied.  We have
+\beq
+\mu(N+1) = E(N+1) - E(N)
+\eeq
+That is, we compare the energy for the two different levels. 
+
+
+
+
+\end{description}
+
+\
+
+\end{document}
