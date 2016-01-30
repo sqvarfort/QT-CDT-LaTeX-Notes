@@ -5,7 +5,9 @@
 \author{Sofia Qvarfort}
 \maketitle
 
-\section{Elzeman's Lectures}
+\tableofcontents
+
+\section{Elzerman's Lectures}
 \subsection{Motivation}
 \begin{description}
 \item[Core point] It is not about building the best qubit using different approaches, but about where each specific qubit excels. 
@@ -65,11 +67,11 @@ Attempt at answer:  I think the energy used here is actually different.
 \item[Covalent solids] (which includes Si, GaAs, InAs) the VB is completely occupied. 	The CB 	is completely empty. 
 
 \item[Conduction band properyties] include
-
 \begin{itemize}
 \item has s-like symmetry
 \item Derives from anti-bonding s-states since orbital angular momentm $l = 0$ leads to $u_{nk}(\vv{r})$ 
 \item Completely empty for covalent solids
+\item Weak spin-orbit interaction but still non-zero
 \end{itemize}
 
 \item[Valence band properties]
@@ -129,11 +131,334 @@ where $\lambda_{so}$ is a coupling constant that depends on geometry and materia
 \ket{\frac{1}{2}, - \frac{1}{2}} = \ket{\uparrow}
 \eeq
 
+I think that we are here using the first vector in the ket to denote the angular momentum \emph{relative to which} we define the spin direction. The first vector in the ket does not actually determine the eigenstate. This analysis is based on what we see further down. 
+
+Eigenstates of $\vv{L}$  are givne by 
+\beq
+\mbox{CB (s-states)} =  \ket{00} 
+\eeq
+\begin{align}
+\mbox{VB (p-states)} &= \ket{1,1} && = - \frac{1}{\sqrt{2}} \ket{x + iy} \\
+&=\ket{1,0} &&= \ket{z} \\
+&= \ket{1,-1} &&= \frac{1}{\sqrt{2}} \ket{x - iy}
+\end{align}
+
+Question: I presume here that
+\beq
+\ket{x + iy} = \ket{+ } + i \ket{i+}
+\eeq
+or something. 
+
+\item[Eigenstates of total angular momentum] are given by
+
+\beq
+CB: = \ket{\frac{1}{2}, \frac{1}{2} }  = \ket{0,0} \ket{\uparrow}
+\eeq
+\beq
+CB: = \ket{\frac{1}{2}, - \frac{1}{2}} = \ket{0,0} \ket{\downarrow}
+\eeq
+\beq
+HH: \ket{\frac{3}{2}, \frac{3}{2} }= \ket{1,1} \ket{\uparrow} 
+\eeq
+\beq
+HH: \ket{\frac{3}{2}, - \frac{3}{2}} = \ket{1,-1} \ket{\downarrow}
+\eeq
+\beq
+LH: \ket{\frac{3}{2}, \frac{1}{2}} = \frac{1}{\sqrt{3}} \left( \ket{1,1} \ket{ \downarrow } + \sqrt{2} \ket{1,0} \ket{\uparrow} \right)
+\eeq
+\beq
+LH: \ket{\frac{3}{2} , - \frac{1}{2}} = \frac{1}{\sqrt{3}} \left( \ket{1,-1} \ket{\uparrow} + \sqrt{2} \ket{1,0} \ket{\downarrow} \right)
+\eeq
+\beq
+SO: \ket{\frac{1}{2}, \frac{1}{2}} = \frac{1}{\sqrt{3}} \left( \ket{1,0} \ket{\uparrow}  - \sqrt{2} \ket{1,1} \ket{\downarrow} \right)
+\eeq
+\beq
+SO: \ket{\frac{1}{2}, - \frac{1}{2}} = \frac{1}{\sqrt{3}} \left( \ket{1,0} \ket{\downarrow} - \sqrt{2} \ket{1, -1} \ket{\uparrow } \right)
+\eeq
+
+
+Question: I'm sure there is logic behind these assignments, but I don't see it. 
+
+\item[Control over electron spin] can be done through the spin-orbit interaction, by controlling the orbital angular momentum $\vv{L}$ through optical transitions. That is, we can use electric fields to change $\vv{L}$ and thus control $\vv{S}$ through the coupling. 
+
+The disadvantage is that the quantum dot becomes more sensitive to photon noise. 
+
+\item[Connection between CB and HH] they both share $m_j$ and $m_s$ projections. This will cause simple optical selection rules. 
+
+\item[Connection between SO and LH] they feature mixtures of spin projections for each $m_j$, which means that optical selection rules will be more complicated. 
+
+\item[Small QDs] see effects of mixed LHs and HHs. 
+
 
 
 \end{description}
 
+\subsubsection{Strain}
+\begin{description}
+\item[Unstrained QDs] have degenerate energies for HHs and LHs. 
 
+\item[Compressive strain] Raises the energy band of HHs. This means that they get lower energy. 
+
+Question: I thought that the higher a band was, the higher the energy... evidently not. 
+
+\item[Tensile strain] raises the LH band (decreasing its energy) and lowers the HH band. 
+
+\item[Source of strain] confinement potential from QD. 
+
+\end{description}
+
+\subsubsection{Quantum Confinement}
+\begin{description}
+
+\item[No confinement] Can use this treatment for a bulk material with periodic boundary conditions. 
+
+Grid cell wavevector given by 
+\beq
+(dk)^3 = \frac{(2\pi)^3}{V}
+\eeq
+Number of allowed state is
+\beq
+N(k) = \frac{g_s 4\pi k^2\Delta k}{(dk)^3}
+\eeq
+with $g_s = 2$ for spin degeneracy, means that the density of states is 
+\beq
+D_{3D}(k) = \frac{N(k)}{(\Delta k \cdot V)} = \frac{k^2}{\pi^2}
+\eeq
+Energy is given by 
+\beq
+E = E_{CB} + \frac{\hbar^2 k^2}{2m^*}
+\eeq
+because we are looking at electrons in the VB, which carry both CB energy and additional, free moving energy. 
+
+We can thus transform to the DoS in terms of energy, with
+\begin{align}
+D_{3D}(E) &= D_{3D} (k) \frac{dk}{dE} \\
+&= \left( \frac{2}{\pi} \right)^{1/2} \left( \frac{m^*}{\pi \hbar^2} \right)^{3/2} (E-E_{CB})^{1/2}
+\end{align}
+
+
+\end{description}
+\subsubsection{Generating confinement}
+\begin{description}
+\item[Local charge] creates a quantum well potential. Create this by implanting a deep defect. Hard to contain both electrons and holes becuase defect will have charge. 
+
+\item[Gate electrodes] Apply voltages to metal gate electrodes on the top surface of a semiconductor. This does not confine in all three directions, however. We require a 2DEG produced by a band offset, or similar. This method can confined either electrons or holes. 
+
+\item[Band offsets] By introducing InAs in GaAs or similar, we create an offset in both the VB and CB. These bring the energy gap $E_G$ down. We can trap both the electron and the hole here, which makes recombination easier. This is the grown quantum dot. 
+
+\item[Examples of quantum dots] are
+\begin{itemize}
+\item NV centres
+\item Shallow dopants in semiconductors
+\item Molecules
+\item QDs grown by Molecular Beam Apitaxy
+\item Coloidal QDs grown by chemical processes
+\item Using gates on heterostructures for single and double QDs
+\item QDs in semiconductor nanowires grown by epitaxy
+\item Gate defined QDs in semiconductor nanowires
+\end{itemize}
+
+
+\item[Epitaxy] is when we deposit crystalline layers on a seed substrate through a gaseous or liquid precursor. There are many different ways of doing this. 
+
+
+\end{description}
+\subsubsection{Self-assembled quantum dots}
+\begin{description}
+\item[Dimensions] typical dimensions of a QD in InAs section is about 20nm$\times$5nm. 
+
+\item[Growing procedure] is
+\begin{itemize}
+\item Start with GaAs layer
+\item Grow InAs layer on top, get spheres
+\item Apply partial GaAs overgrowth
+\item Annealing process
+\item GaAs capping
+\end{itemize}
+By thinning the dots through the annealing process, we gain some control over emission wavelength. Get blueshift due to increased confinement energy. 
+
+\item[Use of strain for growth] Strain between e.g. GaAs and InAs layers cause quantum dots to form. This is caused by misfit dislocation formation. This can lift the degeneracy between LHs and HHs, which is what we want (I think). 
+
+
+\item[Conditions for growth] of quantum dots include
+\begin{itemize}
+\item Correct number of layers
+\item Usually temperatures around 400-500 C
+\item 
+\end{itemize}
+
+\end{description}
+\subsection{Optical transitions and selection rules}
+\subsubsection{Scattering processes}
+\begin{description}
+\item[Elastic scattering] Occurs when the incoming light is detuned from resonance
+\beq
+\omega = \omega_0 + \Delta
+\eeq
+Shining this light on the system causes it to be excited to a time $\Delta t$ allowed by the Heisenberg uncertainty principles. Once the system decays, it emits phase-coherent photons into all directions with original frequency $\omega$. This is the most common scattering process. 
+
+\item[Stimulated Raman scattering] occurs when we have a three level system with $\ket{g}, \ket{v}, \ket{e}$ in increasing energy, where we have an incoming photon at $\omega_1$, which together with $\omega_2$, I think from an external field, causes an excitation. System can either end up in $\ket{v}$ which is a an excitation of the vibrational modes of the lattice, or in $\ket{g}$. These two processes are called Stokes and anti-Stokes. 
+
+Question: I think they are really much more advanced than we are told here. They depend on the available vibrational degrees of freedom of the lattice atoms. 
+
+\end{description}
+
+\subsubsection{Light-matter interaction}
+\begin{description}
+\item[Semi-classical approach] treats the particles as quantum objects and the light wave as classical. EM wave given by 
+\beq
+\vv{E}(\vv{r}, t) = \vv{E}_0 \cos{(\omega + \vv{k} \cdot \vv{r})}
+\eeq
+It drives an electron at $\vv{r}$ around equilibrium position $r_0$. 
+
+\item[Dipole treatment] the electronic oscillations correspond to an oscillating dipole
+\beq
+\vv{p}(t) = q \vv{r}(t)
+\eeq
+
+
+\item[Classical energy of dipole in E-field] is given by 
+\beq
+U = - \vv{p} \cdot \vv{E} = - q \vv{r}(t) \cdot \vv{E}(\vv{r}, t)
+\eeq
+
+\item[Long wavelength approximation] The wavelength of the photon is much larger than any distance the electron is expected to move over the timespans that we are considering. Thus $E(\vv{r}, t)= E(r_0, t)$. 
+
+\item[Semi-classical Hamiltonian] 
+\beq
+H _{int} = - q \hat{p} \cdot \vv{A}( \vv{r}_0, t)/m
+\eeq
+
+Question: This comes from the the addition of $\vv{A}$ to the kinetic energy term, which in turn comes from the Lorentz force. But where did our electric field go? 
+
+\end{description}
+\subsubsection{Properties of self-assembled quantum dots}
+\begin{description}
+\item[Artifical atom] simulated by having only a few electrons occupy one space. 
+This can be done by using E-fields, gates or material interfaces. 
+
+\item[Desired properties] are
+\begin{itemize}
+\item Low coupling to noise
+\item Small capacitance to give large
+\beq
+E_c = \frac{e^2}{C} > k_B T
+\eeq
+\item Ability to cool system to energies below that of energy spacing
+\beq
+\Delta \epsilon > k_B T
+\eeq
+\end{itemize}
+
+\item[Optically active quantum dot] can be made by confining the electrons and holes in the same spaces. We also have to make sure electron-hole combination is not forbidden by selection rules. 
+
+\item[Controlling an OAQD] We first load the QD with one electron, then we make sure the material couples the electron spin to a laser via the spin-orbit interaction. 
+
+\end{description}
+\subsubsection{Exciton selection rules}
+In this section we consider the $X^0$ exciton, which is made up of one electron and one hole. 
+
+\begin{description}
+\item[Bright exciton states] for the $X^0$ exciton are given by 
+\beq
+\ket{\uparrow \Downarrow} , \ket{\downarrow, \Uparrow}
+\eeq
+These can decay to the ground state via an emission of a photon. This is because of the selection rules. There is a $\Delta m_z = \pm 1$ selection rule, which means that the system must change in one unit of angular momentum in the $z$-direction. 
+
+\item[Exciton state couplings] We have that 
+
+\beq
+\sigma_- \ket{\uparrow \Downarrow} \rightarrow \ket{0}
+\eeq
+\beq
+\sigma_+ \ket{\downarrow \Uparrow} \rightarrow \ket{0}
+\eeq
+
+Note that if we couple to these states in order to create the $XX^0$ biexciton state, we \emph{create} the state that the photon couples to. This is because we are not coupling the existing state to the ground state, but we get one of the existing states to obtain another set of electron and hole. 
+
+\item[Energy of charge exciton transitions] Are given by considering the energies and potentials created by electrons and holes. 
+
+Single exciton: \\
+\beq
+E(1e, 1h) = E^e + E^h - V^{eh}
+\eeq
+
+Biexciton $X^{1-}$: \\
+\beq
+E(2e, h) 2E^e + E^h + V^{ee} - 2V^{eh}
+\eeq
+
+Biexciton $X^{2-}$: \\
+\beq
+E(3e, 1h) = 3E^e + E^h + 3V^{ee} - 3V^{eh} + \epsilon_{sp}
+\eeq
+where $\epsilon_{sp}$ is the difference between singlet and triplet configurations. 
+
+Biexciton $XX^0$: \\
+\beq
+E(2e, 2h) = 2E^e + 2E^h + V^{ee} + V^{hh} -4 V^{eh}
+\eeq
+
+\item[Emission photon energy] can be found by comparing the energy of the exciton with the energy of the biexciton. For example, the energy emitted by a $\sigma_+	$ photon during $XX^0 \rightarrow X^0$ is given by 
+\beq
+\Delta E(XX^0\rightarrow X^0) = E(2e, 2h) - E(1e, 1h) = E^e + E^h + V¨{ee} + V^{hh} - 3V^{eh}s
+\eeq
+
+
+
+\item[Interaction energy difference] we find that
+\beq
+V^{ee} < V^{eh} < V^{hh}
+\eeq
+This follows because electrons and heavy holes have different effective mass, and we know that $m^*_e < m^*_h$, hence the name heavy hole. A larger effective mass means stronger confinement. This in turn means that the wavefunction is more spread-out, causing the electrons to be further apart on average. This means that $V^{ee}$ is smaller than $V^{hh}$, even though they have the same charge. 
+
+\item[Resonance Fluorescence] is when the laser is tuned to resonate with the QD. Drives QD in elastic light scattering. The incoming wavelength plus the QD emission wavelength are scattered. We then suppress detected light with a polariser and use single-photon detection on the rest. 
+
+\item[Resonant reflections] tune the laser to resonance, but amplify resulting light. Measure interference between laser light and QD emission with homodyne detection. 
+
+
+\end{description}
+
+\subsection{QDs as qubits}
+\begin{description}
+\item[General idea] we focus on the $X^{1-}$ state. One electron is the qubit, and the remaining electron-hole pair can be used for qubit manipulation. 
+
+\item[Control] can be done by embedding the qubit between a back contact and a gate. By tuning the voltage of the gate, we control the vertical electric field. 
+
+\item[Qubit transitions] the transition $\ket{\uparrow} \rightarrow \ket{\downarrow}$ of the qubit is forbidden due to selection rules. But using the trion state $X^{1-}$ they are available. 
+
+\item[Advantages] very fast manipulation through lasers due to large optical energies. Polarisation selection rules means we can access particular spin states, even when they are degenerate. 
+
+\item[Presence of B-field] lifts the degeneracy of the electron states. The direction of the magnetic field determines the ground states. Basically, the B-field generates a Hamiltonian. 
+
+\item[Faraday configuration] means the B-field is along the growth direction. Get eigenstates $\ket{\uparrow}$ and $\ket{\downarrow}$ along $z$. Similarly, get trion eigenstates along $z$: $\ket{T_\Uparrow}$ and $\ket{T_\Downarrow}$. 
+
+Note that this also breaks the degeneracy between  $\ket{\uparrow \Downarrow \downarrow}$ and $\ket{\uparrow \Uparrow \downarrow}$. This is because of the Zeeman interaction. 
+
+\item[Zeeman energy splitting] The two trion states will be split by 
+\beq
+\Delta E^h_Z = g^h \mu_B B
+\eeq
+and the two qubit states will be split by 
+\beq
+\Delta E^e_Z = g^e \mu_B B
+\eeq
+
+Question: Why aren't the trion states split by the electron Zeeman interaction?
+
+Answer: Presumably because the $\ket{\uparrow \downarrow}$ combination is degenerate. 
+
+\item[Voigt configuration] here we apply the B-field perpendicular to the growth direction. The ground states are
+\beq
+\ket{+} = \frac{1}{\sqrt{2}} \left( \ket{\uparrow } + \ket{\downarrow} \right)
+\eeq
+\beq
+\ket{-} = \frac{1}{\sqrt{2}} \left( \ket{\uparrow} - \ket{\downarrow} \right)
+\eeq
+The same goes for the trion states. Basically, we can decide which Hamiltonian and thus energy eigenstates we get by changing the magnetic field direction. 
+
+\newpage
+\end{description}
 \section{Transport}
 
 \subsection{Conductance of Ballistic conductor between reflectorless contacts}
@@ -385,6 +710,87 @@ That is, we compare the energy for the two different levels.
 
 \end{description}
 
-\
+\subsection{Notes from Problem Sheet}
+\begin{description}
+\item[Landauer formula] is given by 
+\beq
+G = \frac{2e^2}{h} MT
+\eeq
+where $G$ is the conductance. 
 
+\item[Current] is the conductance times the difference in chemical potential
+\beq
+I = G \frac{\Delta \mu}{e}
+\eeq
+The current flows to compensate for the chemical potential difference. 
+
+\item[Difference in electrostatic energy] has to be taken between the middle of potential energies for the contacts. 
+
+For one contact with $\Delta \mu = \mu_L - \mu'$ and one with $\mu'' - \mu_R$, we get
+\beq
+e V = \frac{\mu_L + \mu'}{2} - \frac{\mu'' + \mu_R}{2}  = \frac{\mu_L - \mu_R}{2} + \frac{\mu' - \mu''}{2}
+\eeq
+
+\item[Current conservation] bas to occur at the connection of the contacts.  We write
+\beq
+N(\mu_L - \mu') = N(\mu''- \mu_R) = M(\mu_L - \mu_R)
+\eeq
+
+\item[Spin degeneracy in Coulomb diamonds] the large-small-large difference in diamonds reflects spin degeneracy. This is because of the Pauli blockade - we cannot put in another electron in the same state. 
+
+\item[Addition energy from Coulomb diamonds] given by 
+\beq
+\Delta E_{add} = \mu(N+1) - \mu(N) = \frac{e^2}{C_\Sigma}  + E_{N+1}^K - E^K_N
+\eeq
+here
+\beq
+E_{N+1}^K - E^K_N = \Delta E
+\eeq
+which is the difference between odd and even number of electrons. 
+
+\item[Height of small diamonds] is given by 
+\beq
+\frac{e^2}{C_\Sigma} = e  V_{SD}
+\eeq
+
+From this we can infer the charging energy
+\beq
+E_c = \frac{eV_{SD}}{2}
+\eeq
+
+
+
+\item[Height of large diamonds] If the separation between energy levels $\Delta E = E_{N+1}^K - E_N^K$ is known, such as for nanotubes, with 
+\beq
+\Delta E = \frac{v_F h}{4L}
+\eeq
+then we can work out the height of the large Coulomb diamonds. 
+\beq
+V_{SD} = \frac{e}{C_\Sigma} + \frac{\Delta E}{e}
+\eeq
+for the energy in eV. 
+
+
+\item[Width of diamonds] is derived from the total capacitance. The width of the diamond is in terms of the gate voltage $\Delta V_g$, we get that
+\beq
+e \Delta V_g \frac{C_g}{C_\Sigma} = \frac{e^2}{C_\Sigma} + \Delta E
+\eeq
+Through this, we measure the response of the quantum dot to the applied voltage from the gate. 
+
+\item[Role of gate voltage] we use the gate voltage to control the properties of the quantum dot and decide how many charges there are on the quantum dot at this time. 
+
+If we just changed the $V_{SD}$ we only see spikes when the energy levels align. I guess by changing both $V_{SD}$ and $V_g$, and by doing so  very precisely, we could actually keep a current flowing indefinitely. Or, at least, there would be conductance. 
+
+\item[Size of Coulomb diamonds] You have to apply a larger energy when there are an even number of electrons present on the quantum dot. 
+
+
+\item[Temperature dependence] When do we no longer see conductance? When the temperature is too high, and thermal excitations can overcome the charging energy. 
+
+For there to be observable conductance, the charging energy needs to be much higher than the thermal energy given by $k_B T$. 
+
+Question: Wouldn't this increase the conductance? 
+
+Answer: I think what i t refers to is the fact that electrons would be able to jump from both directions, and also populate the qubit with more than one electron. Basically, large thermal fluctuations will mess things up. 
+
+\end{description}
 \end{document}
