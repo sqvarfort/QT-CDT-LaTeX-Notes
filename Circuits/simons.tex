@@ -1,0 +1,108 @@
+%  qubit q_{1},0
+%  qubit q_{2},0
+%  qubit q_{n-1},0
+%  qubit q_{n},0
+%  qubit a_{1},0
+%  qubit a_{2},0
+%  qubit a_{n-1},0
+%  qubit a_{n},0
+%  defbox nH,4,0,'H^{\otimes n}'
+%  defbox oracle,8,0,'O_{f}'
+%  defbox meas,4,0,'\mathcal{M}'
+%  nH q_{1},q_{2},q_{n-1},q_{n}
+%  nH a_{1},a_{2},a_{n-1},a_{n}
+%  oracle q_{1},q_{2},q_{n-1},q_{n},a_{1},a_{2},a_{n-1},a_{n}
+%  nH q_{1},q_{2},q_{n-1},q_{n}
+%  discard a_{1}
+%  discard a_{2}
+%  discard a_{n-1}
+%  discard a_{n}
+%  meas q_{1},q_{2},q_{n-1},q_{n}
+
+%  Time 01:
+%    Gate 00 nH(q_{1},q_{2},q_{n-1},q_{n})
+%    Gate 01 nH(a_{1},a_{2},a_{n-1},a_{n})
+%  Time 02:
+%    Gate 02 oracle(q_{1},q_{2},q_{n-1},q_{n},a_{1},a_{2},a_{n-1},a_{n})
+%  Time 03:
+%    Gate 03 nH(q_{1},q_{2},q_{n-1},q_{n})
+%    Gate 04 discard(a_{1})
+%    Gate 05 discard(a_{2})
+%    Gate 06 discard(a_{n-1})
+%    Gate 07 discard(a_{n})
+%  Time 04:
+%    Gate 08 meas(q_{1},q_{2},q_{n-1},q_{n})
+
+% Qubit circuit matrix:
+%
+% q_{1}: gAxA, gBxA, gCxA, gDxA, n  
+% q_{2}: gAxB, gBxB, gCxB, gDxB, n  
+% q_{n-1}: gAxC, gBxC, gCxC, gDxC, n  
+% q_{n}: gAxD, gBxD, gCxD, gDxD, n  
+% a_{1}: gAxE, gBxE, gCxE
+% a_{2}: gAxF, gBxF, gCxF
+% a_{n-1}: gAxG, gBxG, gCxG
+% a_{n}: gAxH, gBxH, gCxH
+
+\documentclass[11pt]{article}
+\input{xyqcirc.tex}
+
+% definitions for the circuit elements
+
+\def\gAxA{\gnqubit{H^{\otimes n}}{ddd}\w\A{gAxA}}
+\def\gAxB{\gspace{H^{\otimes n}}\w\A{gAxB}}
+\def\gAxC{\gspace{H^{\otimes n}}\w\A{gAxC}}
+\def\gAxD{\gspace{H^{\otimes n}}\w\A{gAxD}}
+\def\gAxE{\gnqubit{H^{\otimes n}}{ddd}\w\A{gAxE}}
+\def\gAxF{\gspace{H^{\otimes n}}\w\A{gAxF}}
+\def\gAxG{\gspace{H^{\otimes n}}\w\A{gAxG}}
+\def\gAxH{\gspace{H^{\otimes n}}\w\A{gAxH}}
+\def\gBxA{\gnqubit{O_{f}}{ddddddd}\w\A{gBxA}}
+\def\gBxB{\gspace{O_{f}}\w\A{gBxB}}
+\def\gBxC{\gspace{O_{f}}\w\A{gBxC}}
+\def\gBxD{\gspace{O_{f}}\w\A{gBxD}}
+\def\gBxE{\gspace{O_{f}}\w\A{gBxE}}
+\def\gBxF{\gspace{O_{f}}\w\A{gBxF}}
+\def\gBxG{\gspace{O_{f}}\w\A{gBxG}}
+\def\gBxH{\gspace{O_{f}}\w\A{gBxH}}
+\def\gCxA{\gnqubit{H^{\otimes n}}{ddd}\w\A{gCxA}}
+\def\gCxB{\gspace{H^{\otimes n}}\w\A{gCxB}}
+\def\gCxC{\gspace{H^{\otimes n}}\w\A{gCxC}}
+\def\gCxD{\gspace{H^{\otimes n}}\w\A{gCxD}}
+\def\gCxE{\discard\w\A{gCxE}}
+\def\gCxF{\discard\w\A{gCxF}}
+\def\gCxG{\discard\w\A{gCxG}}
+\def\gCxH{\discard\w\A{gCxH}}
+\def\gDxA{\gnqubit{\mathcal{M}}{ddd}\w\A{gDxA}}
+\def\gDxB{\gspace{\mathcal{M}}\w\A{gDxB}}
+\def\gDxC{\gspace{\mathcal{M}}\w\A{gDxC}}
+\def\gDxD{\gspace{\mathcal{M}}\w\A{gDxD}}
+
+% definitions for bit labels and initial states
+
+\def\bA{\qv{q_{1}}{0}}
+\def\bB{\qv{q_{2}}{0}}
+\def\bC{\qv{q_{n-1}}{0}}
+\def\bD{\qv{q_{n}}{0}}
+\def\bE{\qv{a_{1}}{0}}
+\def\bF{\qv{a_{2}}{0}}
+\def\bG{\qv{a_{n-1}}{0}}
+\def\bH{\qv{a_{n}}{0}}
+
+% The quantum circuit as an xymatrix
+
+\xymatrix@R=5pt@C=10pt{
+    \bA & \gAxA &\gBxA &\gCxA &\gDxA &\n  
+\\  \bB & \gAxB &\gBxB &\gCxB &\gDxB &\n  
+\\  \bC & \gAxC &\gBxC &\gCxC &\gDxC &\n  
+\\  \bD & \gAxD &\gBxD &\gCxD &\gDxD &\n  
+\\  \bE & \gAxE &\gBxE &\gCxE
+\\  \bF & \gAxF &\gBxF &\gCxF
+\\  \bG & \gAxG &\gBxG &\gCxG
+\\  \bH & \gAxH &\gBxH &\gCxH
+%
+% Vertical lines and other post-xymatrix latex
+%
+}
+
+\end{document}

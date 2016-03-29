@@ -1,0 +1,75 @@
+%  qubit q_{1}
+%  qubit q_{2}
+%  qubit q_{n-1}
+%  qubit q_{n}
+%  qubit o,-
+%  defbox oracle,5,0,'\hat{O}_{f}'
+%  defbox nhad,4,0,'H^{\otimes n}'
+%  defbox shift,4,0,'\vert 0\rangle\rightarrow\vert 0\rangle , \vert x\rangle\rightarrow -\vert x\rangle'
+%  oracle q_{1},q_{2},q_{n-1},q_{n},o
+%  nhad q_{1},q_{2},q_{n-1},q_{n}
+%  shift q_{1},q_{2},q_{n-1},q_{n}
+%  nhad q_{1},q_{2},q_{n-1},q_{n}
+
+%  Time 01:
+%    Gate 00 oracle(q_{1},q_{2},q_{n-1},q_{n},o)
+%  Time 02:
+%    Gate 01 nhad(q_{1},q_{2},q_{n-1},q_{n})
+%  Time 03:
+%    Gate 02 shift(q_{1},q_{2},q_{n-1},q_{n})
+%  Time 04:
+%    Gate 03 nhad(q_{1},q_{2},q_{n-1},q_{n})
+
+% Qubit circuit matrix:
+%
+% q_{1}: gAxA, gBxA, gCxA, gDxA, n  
+% q_{2}: gAxB, gBxB, gCxB, gDxB, n  
+% q_{n-1}: gAxC, gBxC, gCxC, gDxC, n  
+% q_{n}: gAxD, gBxD, gCxD, gDxD, n  
+% o: gAxE, n  , n  , n  , n  
+
+\documentclass[11pt]{article}
+\input{xyqcirc.tex}
+
+% definitions for the circuit elements
+
+\def\gAxA{\gnqubit{\hat{O}_{f}}{dddd}\w\A{gAxA}}
+\def\gAxB{\gspace{\hat{O}_{f}}\w\A{gAxB}}
+\def\gAxC{\gspace{\hat{O}_{f}}\w\A{gAxC}}
+\def\gAxD{\gspace{\hat{O}_{f}}\w\A{gAxD}}
+\def\gAxE{\gspace{\hat{O}_{f}}\w\A{gAxE}}
+\def\gBxA{\gnqubit{H^{\otimes n}}{ddd}\w\A{gBxA}}
+\def\gBxB{\gspace{H^{\otimes n}}\w\A{gBxB}}
+\def\gBxC{\gspace{H^{\otimes n}}\w\A{gBxC}}
+\def\gBxD{\gspace{H^{\otimes n}}\w\A{gBxD}}
+\def\gCxA{\gnqubit{\vert 0\rangle\rightarrow\vert 0\rangle , \vert x\rangle\rightarrow -\vert x\rangle}{ddd}\w\A{gCxA}}
+\def\gCxB{\gspace{\vert 0\rangle\rightarrow\vert 0\rangle , \vert x\rangle\rightarrow -\vert x\rangle}\w\A{gCxB}}
+\def\gCxC{\gspace{\vert 0\rangle\rightarrow\vert 0\rangle , \vert x\rangle\rightarrow -\vert x\rangle}\w\A{gCxC}}
+\def\gCxD{\gspace{\vert 0\rangle\rightarrow\vert 0\rangle , \vert x\rangle\rightarrow -\vert x\rangle}\w\A{gCxD}}
+\def\gDxA{\gnqubit{H^{\otimes n}}{ddd}\w\A{gDxA}}
+\def\gDxB{\gspace{H^{\otimes n}}\w\A{gDxB}}
+\def\gDxC{\gspace{H^{\otimes n}}\w\A{gDxC}}
+\def\gDxD{\gspace{H^{\otimes n}}\w\A{gDxD}}
+
+% definitions for bit labels and initial states
+
+\def\bA{ \q{q_{1}}}
+\def\bB{ \q{q_{2}}}
+\def\bC{ \q{q_{n-1}}}
+\def\bD{ \q{q_{n}}}
+\def\bE{\qv{o}{-}}
+
+% The quantum circuit as an xymatrix
+
+\xymatrix@R=5pt@C=10pt{
+    \bA & \gAxA &\gBxA &\gCxA &\gDxA &\n  
+\\  \bB & \gAxB &\gBxB &\gCxB &\gDxB &\n  
+\\  \bC & \gAxC &\gBxC &\gCxC &\gDxC &\n  
+\\  \bD & \gAxD &\gBxD &\gCxD &\gDxD &\n  
+\\  \bE & \gAxE &\n   &\n   &\n   &\n  
+%
+% Vertical lines and other post-xymatrix latex
+%
+}
+
+\end{document}

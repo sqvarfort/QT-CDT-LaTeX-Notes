@@ -1,0 +1,75 @@
+% 
+%  defbox Fm,3,0,'\tilde{F}_{n-1}'
+%  def r2,1,'R_{2}'
+%  def rn,1,'R_{n}'
+%  def rnm1,1,'R_{n-1}'
+%  qubit q_{n}
+%  qubit q_{n-1}
+%  qubit q_{2}
+%  qubit q_{1}
+%  Fm q_{n},q_{n-1},q_{2}
+%  nop q_{1}
+%  rn q_{1},q_{n}
+%  rnm1 q_{1},q_{n-1}
+%  r2 q_{1},q_{2}
+%  h q_{1}
+
+%  Time 01:
+%    Gate 00 Fm(q_{n},q_{n-1},q_{2})
+%    Gate 01 nop(q_{1})
+%  Time 02:
+%    Gate 02 rn(q_{1},q_{n})
+%  Time 03:
+%    Gate 03 rnm1(q_{1},q_{n-1})
+%  Time 04:
+%    Gate 04 r2(q_{1},q_{2})
+%  Time 05:
+%    Gate 05 h(q_{1})
+
+% Qubit circuit matrix:
+%
+% q_{n}: gAxA, gBxA, n  , n  , n  , n  
+% q_{n-1}: gAxB, n  , gCxB, n  , n  , n  
+% q_{2}: gAxC, n  , n  , gDxC, n  , n  
+% q_{1}: gAxD, gBxD, gCxD, gDxD, gExD, n  
+
+\documentclass[11pt]{article}
+\input{xyqcirc.tex}
+
+% definitions for the circuit elements
+
+\def\gAxA{\gnqubit{\tilde{F}_{n-1}}{dd}\w\A{gAxA}}
+\def\gAxB{\gspace{\tilde{F}_{n-1}}\w\A{gAxB}}
+\def\gAxC{\gspace{\tilde{F}_{n-1}}\w\A{gAxC}}
+\def\gAxD{*-{}\w\A{gAxD}}
+\def\gBxD{\b\w\A{gBxD}}
+\def\gBxA{\op{R_{n}}\w\A{gBxA}}
+\def\gCxD{\b\w\A{gCxD}}
+\def\gCxB{\op{R_{n-1}}\w\A{gCxB}}
+\def\gDxD{\b\w\A{gDxD}}
+\def\gDxC{\op{R_{2}}\w\A{gDxC}}
+\def\gExD{\op{H}\w\A{gExD}}
+
+% definitions for bit labels and initial states
+
+\def\bA{ \q{q_{n}}}
+\def\bB{ \q{q_{n-1}}}
+\def\bC{ \q{q_{2}}}
+\def\bD{ \q{q_{1}}}
+
+% The quantum circuit as an xymatrix
+
+\xymatrix@R=5pt@C=10pt{
+    \bA & \gAxA &\gBxA &\n   &\n   &\n   &\n  
+\\  \bB & \gAxB &\n   &\gCxB &\n   &\n   &\n  
+\\  \bC & \gAxC &\n   &\n   &\gDxC &\n   &\n  
+\\  \bD & \gAxD &\gBxD &\gCxD &\gDxD &\gExD &\n  
+%
+% Vertical lines and other post-xymatrix latex
+%
+\ar@{-}"gBxA";"gBxD"
+\ar@{-}"gCxB";"gCxD"
+\ar@{-}"gDxC";"gDxD"
+}
+
+\end{document}

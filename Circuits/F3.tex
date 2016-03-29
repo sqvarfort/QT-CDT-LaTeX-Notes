@@ -1,0 +1,77 @@
+% 
+%  def r2,1,'R_{2}'
+%  def r3,1,'R_{3}'
+%  qubit q1
+%  qubit q2
+%  qubit q3
+%  h q1
+%  r2 q2,q1
+%  r3 q3,q1
+%  nop q2
+%  h q2
+%  r2 q3,q2
+%  h q3
+%  swap q1,q3
+
+%  Time 01:
+%    Gate 00 h(q1)
+%  Time 02:
+%    Gate 01 r2(q2,q1)
+%  Time 03:
+%    Gate 02 r3(q3,q1)
+%    Gate 03 nop(q2)
+%  Time 04:
+%    Gate 04 h(q2)
+%  Time 05:
+%    Gate 05 r2(q3,q2)
+%  Time 06:
+%    Gate 06 h(q3)
+%  Time 07:
+%    Gate 07 swap(q1,q3)
+
+% Qubit circuit matrix:
+%
+% q1: gAxA, gBxA, gCxA, n  , n  , n  , gGxA, n  
+% q2: n  , gBxB, gCxB, gDxB, gExB, n  , n  , n  
+% q3: n  , n  , gCxC, n  , gExC, gFxC, gGxC, n  
+
+\documentclass[11pt]{article}
+\input{xyqcirc.tex}
+
+% definitions for the circuit elements
+
+\def\gAxA{\op{H}\w\A{gAxA}}
+\def\gBxB{\b\w\A{gBxB}}
+\def\gBxA{\op{R_{2}}\w\A{gBxA}}
+\def\gCxC{\b\w\A{gCxC}}
+\def\gCxA{\op{R_{3}}\w\A{gCxA}}
+\def\gCxB{*-{}\w\A{gCxB}}
+\def\gDxB{\op{H}\w\A{gDxB}}
+\def\gExC{\b\w\A{gExC}}
+\def\gExB{\op{R_{2}}\w\A{gExB}}
+\def\gFxC{\op{H}\w\A{gFxC}}
+\def\gGxA{\t\w\A{gGxA}}
+\def\gGxC{\t\w\A{gGxC}}
+
+% definitions for bit labels and initial states
+
+\def\bA{ \q{q_{1}}}
+\def\bB{ \q{q_{2}}}
+\def\bC{ \q{q_{3}}}
+
+% The quantum circuit as an xymatrix
+
+\xymatrix@R=5pt@C=10pt{
+    \bA & \gAxA &\gBxA &\gCxA &\n   &\n   &\n   &\gGxA &\n  
+\\  \bB & \n   &\gBxB &\gCxB &\gDxB &\gExB &\n   &\n   &\n  
+\\  \bC & \n   &\n   &\gCxC &\n   &\gExC &\gFxC &\gGxC &\n  
+%
+% Vertical lines and other post-xymatrix latex
+%
+\ar@{-}"gBxA";"gBxB"
+\ar@{-}"gCxA";"gCxC"
+\ar@{-}"gExB";"gExC"
+\ar@{-}"gGxA";"gGxC"
+}
+
+\end{document}

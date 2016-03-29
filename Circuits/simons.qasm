@@ -1,0 +1,20 @@
+ qubit q_{1},0
+ qubit q_{2},0
+ qubit q_{n-1},0
+ qubit q_{n},0
+ qubit a_{1},0
+ qubit a_{2},0
+ qubit a_{n-1},0
+ qubit a_{n},0
+ defbox nH,4,0,'H^{\otimes n}'
+ defbox oracle,8,0,'O_{f}'
+ defbox meas,4,0,'\mathcal{M}'
+ nH q_{1},q_{2},q_{n-1},q_{n}
+ nH a_{1},a_{2},a_{n-1},a_{n}
+ oracle q_{1},q_{2},q_{n-1},q_{n},a_{1},a_{2},a_{n-1},a_{n}
+ nH q_{1},q_{2},q_{n-1},q_{n}
+ discard a_{1}
+ discard a_{2}
+ discard a_{n-1}
+ discard a_{n}
+ meas q_{1},q_{2},q_{n-1},q_{n}
