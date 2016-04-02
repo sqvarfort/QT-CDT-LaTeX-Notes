@@ -579,4 +579,80 @@ Combining this with the above result gives
 \end{equation}
 showing that $O(\sqrt{N})$ is optimal.
 % \subsection*{Grover as simulation}
+
+\section{Alternative Models of Computation}
+Alternatives to the gate model of computing exist, which provide different ways to encode the computation. These are more analagous to analogue classical computing than digital, gate based computing.
+
+\subsection*{One-Way Computation}
+
+Also called measurement-based computation, this method uses a highly entangled state as the computational resource. The computation is then implemented by performing single qubit rotations and measurements on the individual components of the entnangled state.
+
+The key resource is the `graph state', a simple way of represning highly entangled states with graphs. A graph $G$ is made up of a set of vertices $V$, and edges $E=\{(i,j\}$ which connect vertices $V_{i}$ and $V_{j}$.
+
+The pair of vertices connected by an edge are called `adjacent',and we can define a $|V|\times|V|$ `adjacency' matrix $\Gamma$, where the element $[V]_{ij}=1$ if $(i,j)\in E$, and 0 otherwise.
+
+To define a graph state, we associate a state $\ket{+}$ with every vertex. We can then construct the state using a quantum circuit by performing a $CZ$ operation between every pair of qubits $(a,b)\in E$.
+\begin{equation}
+    \ket{G}=\prod_{(a,b)\in E}CZ^{(a,b)}\ket{+}^{\otimes|V|}
+\end{equation}
+
+A simpler method involves expressing the state $\ket{G}$ as a superposition of computational states. We label each vertex $1$ through $|V|$. For each of the $2^{|V|}$ binary strings, each vertex is assigned either $\ket{0}$ or $\ket{1}$. The vertices assigned $\ket{1}$ are called selected, and we count the number of edges that are connected to the `selected' vertices. If this number is even, the string has parity $+1$, and $-1$ otherwise. We thus have
+\begin{equation}
+    \ket{G}=\sum_{x\in\{0,1\}^{|V|}}(-1)^{|E_{selected}|}\ket{x}
+\end{equation}
+
+\subsection*{Adiabatic Computing}
+
+In adiabatic computing, we try to construct a Hamiltonian $H_{problem}=\sum_{j}E_{j}\ketbra{E_{j}}{E_{j}}$, such that the ground state $\ket{E_{0}}$ encodes the solution to the problem we wish to solve. We then start in the ground state of a simple Hamiltonian $H_{0}$, and slowly interpolate between the two such that we (hopefully) remain in the ground state.
+
+We can do this either by implementing the evolution with the Gate model (`Digitial' Adiabatic) or using hardware that can realise the Hamiltonian directly (`Analogue'). The former has the advantage that it is error correctable using QECCs, but the latter has the advantage that it is easier to implement and can achieve error supression with Hamiltonian energy penalties for erronious states.
+
+If the computation takes time $T$, we define the Hamiltonian in terms of a parameter $s=\frac{t}{T}$ such that
+\begin{equation}
+    \tilde{H}(s)=\sum_{j}E_{j}(s)\ketbra{E_{j}(s)}{E_{j}(s)}
+\end{equation}
+where $\tilde{H}(0)=H_{0}$, and $\tilde{H}(1)=H_{problem}$.
+
+$|\braket{\psi(T)}{E_{0}(1)}|^{2}=1$ as $T\rightarrow\infty$, but how large does $T$ need to be for $|\braket{\psi(T)}{E_{0}(1)}|^{2}=1-\epsilon$?
+
+This depends on the spectral gap of the Hamiltonian throughout the evolution, namely
+\begin{equation}
+    \Delta(s)=E_{1}(s)-E_{0}(s), \Delta \equiv \min_{s\in[0,1]}\Delta(s)
+\end{equation}
+Which gives, approximately, $T\gg \frac{\Gamma^{2}}{\Delta^{2}}$, where $\Gamma^{2}\equiv \max_{s\in[0,1]}\|[\tilde{\dot{H}}]^{2}\|$.
+More complex arguments exist to find a bound for $T$ such  that the error is $\leq \epsilon$, but these are difficult as they rely on integrating $\tilde{H}(s)$.
+
+We start with say $H_{0}=-\sum_{j=1}^{n}X^{j}$, a spin Hamiltonian that is easy to implement, and then interpolate towards the problem Hamiltonian $H_{p}$
+\begin{equation}
+    \tilde{H}(s)=(1-s)H_{0} + sH_{p}.
+\end{equation}
+How big is $\Delta$ as a function of the problem size?
+If
+\begin{itemize}
+    \item $\geq\frac{1}{poly(n)}$: Efficient quantum algorithm
+    \item $\frac{1}{exp(n)}$: Inefficient
+\end{itemize}
+
+Some instances where this has been implemented include
+\begin{itemize}
+    \item Unstructured Search: Still scales as $\sqrt{N}$!
+    \item Transverse Ising Model
+    \item `Fisher\'s problem'
+\end{itemize}
+
+\hrulefill
+
+\textbf{Aside:} Fisher's problem is the problem of interval estimation and hypothesis testing between the means of two normal distribution with uneven variances.
+
+\hrulefill
+
+Sources of error in this model include unitary control errors (perturbations in the evolution), dephasing, thermal noise and errors in the achieved problem Hamiltonian.
+
+We can easily see that this is Universal as, given an arbitrary Quantum Circuit $U=U_{k}U_{k-1}\cdots U_{1}$, we can encode this has a Hamiltonian with an accompanying `clock' state as per Feynmann's original ideas for quantum computing
+\begin{equation}
+    H=\sum_{j=1}^{k}[U_{j}\otimes\ketbra{j+1}{j}+U_{j}^{\dagger}\otimes\ketbra{j}{j+1}]
+\end{equation}
+
+Open problems in this model include error suppression, initialisation time (DWave), and the limitaitons of the `stoquastic' Hamiltonians.
+
 \end{document}
