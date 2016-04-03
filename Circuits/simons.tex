@@ -10,7 +10,6 @@
 %  defbox oracle,8,0,'O_{f}'
 %  defbox meas,4,0,'\mathcal{M}'
 %  nH q_{1},q_{2},q_{n-1},q_{n}
-%  nH a_{1},a_{2},a_{n-1},a_{n}
 %  oracle q_{1},q_{2},q_{n-1},q_{n},a_{1},a_{2},a_{n-1},a_{n}
 %  nH q_{1},q_{2},q_{n-1},q_{n}
 %  discard a_{1}
@@ -21,17 +20,16 @@
 
 %  Time 01:
 %    Gate 00 nH(q_{1},q_{2},q_{n-1},q_{n})
-%    Gate 01 nH(a_{1},a_{2},a_{n-1},a_{n})
 %  Time 02:
-%    Gate 02 oracle(q_{1},q_{2},q_{n-1},q_{n},a_{1},a_{2},a_{n-1},a_{n})
+%    Gate 01 oracle(q_{1},q_{2},q_{n-1},q_{n},a_{1},a_{2},a_{n-1},a_{n})
 %  Time 03:
-%    Gate 03 nH(q_{1},q_{2},q_{n-1},q_{n})
-%    Gate 04 discard(a_{1})
-%    Gate 05 discard(a_{2})
-%    Gate 06 discard(a_{n-1})
-%    Gate 07 discard(a_{n})
+%    Gate 02 nH(q_{1},q_{2},q_{n-1},q_{n})
+%    Gate 03 discard(a_{1})
+%    Gate 04 discard(a_{2})
+%    Gate 05 discard(a_{n-1})
+%    Gate 06 discard(a_{n})
 %  Time 04:
-%    Gate 08 meas(q_{1},q_{2},q_{n-1},q_{n})
+%    Gate 07 meas(q_{1},q_{2},q_{n-1},q_{n})
 
 % Qubit circuit matrix:
 %
@@ -39,10 +37,10 @@
 % q_{2}: gAxB, gBxB, gCxB, gDxB, n  
 % q_{n-1}: gAxC, gBxC, gCxC, gDxC, n  
 % q_{n}: gAxD, gBxD, gCxD, gDxD, n  
-% a_{1}: gAxE, gBxE, gCxE
-% a_{2}: gAxF, gBxF, gCxF
-% a_{n-1}: gAxG, gBxG, gCxG
-% a_{n}: gAxH, gBxH, gCxH
+% a_{1}: n  , gBxE, gCxE
+% a_{2}: n  , gBxF, gCxF
+% a_{n-1}: n  , gBxG, gCxG
+% a_{n}: n  , gBxH, gCxH
 
 \documentclass[11pt]{article}
 \input{xyqcirc.tex}
@@ -53,10 +51,6 @@
 \def\gAxB{\gspace{H^{\otimes n}}\w\A{gAxB}}
 \def\gAxC{\gspace{H^{\otimes n}}\w\A{gAxC}}
 \def\gAxD{\gspace{H^{\otimes n}}\w\A{gAxD}}
-\def\gAxE{\gnqubit{H^{\otimes n}}{ddd}\w\A{gAxE}}
-\def\gAxF{\gspace{H^{\otimes n}}\w\A{gAxF}}
-\def\gAxG{\gspace{H^{\otimes n}}\w\A{gAxG}}
-\def\gAxH{\gspace{H^{\otimes n}}\w\A{gAxH}}
 \def\gBxA{\gnqubit{O_{f}}{ddddddd}\w\A{gBxA}}
 \def\gBxB{\gspace{O_{f}}\w\A{gBxB}}
 \def\gBxC{\gspace{O_{f}}\w\A{gBxC}}
@@ -96,10 +90,10 @@
 \\  \bB & \gAxB &\gBxB &\gCxB &\gDxB &\n  
 \\  \bC & \gAxC &\gBxC &\gCxC &\gDxC &\n  
 \\  \bD & \gAxD &\gBxD &\gCxD &\gDxD &\n  
-\\  \bE & \gAxE &\gBxE &\gCxE
-\\  \bF & \gAxF &\gBxF &\gCxF
-\\  \bG & \gAxG &\gBxG &\gCxG
-\\  \bH & \gAxH &\gBxH &\gCxH
+\\  \bE & \n   &\gBxE &\gCxE
+\\  \bF & \n   &\gBxF &\gCxF
+\\  \bG & \n   &\gBxG &\gCxG
+\\  \bH & \n   &\gBxH &\gCxH
 %
 % Vertical lines and other post-xymatrix latex
 %

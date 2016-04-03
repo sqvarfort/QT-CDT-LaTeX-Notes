@@ -10,7 +10,6 @@
  defbox oracle,8,0,'O_{f}'
  defbox meas,4,0,'\mathcal{M}'
  nH q_{1},q_{2},q_{n-1},q_{n}
- nH a_{1},a_{2},a_{n-1},a_{n}
  oracle q_{1},q_{2},q_{n-1},q_{n},a_{1},a_{2},a_{n-1},a_{n}
  nH q_{1},q_{2},q_{n-1},q_{n}
  discard a_{1}
